@@ -1,0 +1,17 @@
+<script src="https://cdn.tiny.cloud/1/198rvzgqdqilhwxfv9w282jwbx5po3rnlt0bqlmihytnnua3/tinymce/5/tinymce.min.js"
+        referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+        selector: '#About_message',
+        content_style: "body { font-size: 14pt;}",
+        plugins: [
+            'image',
+            'link',
+            'charmap',
+        ],
+        entity_encoding: "raw",
+        link_context_toolbar: true,
+        automatic_uploads: true,
+        images_upload_url: '/upload_image',
+    });
+</script>

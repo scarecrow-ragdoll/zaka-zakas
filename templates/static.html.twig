@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ get_static_meta(staticPage.url, 'title', staticPage.title) }}{% endblock %}
+{% block description %}{{ get_static_meta(staticPage.url, 'description', staticPage.description) }}{% endblock %}
+{% block keywords %}{{ staticPage.keywords }}{% endblock %}
+{% block body %}
+    {% include 'common/_header.html.twig' %}
+    {{ staticPage.message|raw }}
+    {% include 'common/_footer.html.twig' %}
+{% endblock %}

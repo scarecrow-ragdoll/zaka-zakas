@@ -1,0 +1,4 @@
+{% set curr = app.request.cookies.get('curr') ?? 'wmr' %}
+{% for game in games %}
+    {% include 'common/_search_result_item.html.twig' %}
+{% endfor %}

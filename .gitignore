@@ -1,0 +1,51 @@
+###> symfony/framework-bundle ###
+/.env.local
+/.env.local.php
+/.env.*.local
+/public/bundles/
+/var/
+/.env
+.env
+/vendor/
+/public/uploads
+/public/templates
+/public/sitemap.xml
+/public/category.xml
+/public/static.xml
+/public/game1.xml
+/public/game2.xml
+/public/game3.xml
+/public/game4.xml
+/public/seller.xml
+/public/category.xml
+public/allGameCache.php
+public/image.txt
+public/icon.txt
+###< symfony/framework-bundle ###
+
+###> symfony/phpunit-bridge ###
+.phpunit
+/phpunit.xml
+###< symfony/phpunit-bridge ###
+
+###> symfony/web-server-bundle ###
+/.web-server-pid
+###< symfony/web-server-bundle ###
+.htaccess
+/public/.htaccess
+/public/img/system/*
+/public/files/*
+/.idea
+/.idea/*
+node_modules/
+###> symfony/webpack-encore-bundle ###
+/node_modules/
+/public/build/
+public/.DS_Store
+npm-debug.log
+yarn-error.log
+###< symfony/webpack-encore-bundle ###
+/.DS_Store
+deploy_live.*
+deploy_local.*
+generate_migration.*

@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /login
+Disallow: /admin
+
+Host: steambuys.net
+Sitemap: https://steambuys.net/sitemap.xml

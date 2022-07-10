@@ -1,0 +1,77 @@
+{#<a href="{{ path('game', {digiseller:game.gameId,slug:get_slug(game.title)}) }}" class="top-sales-item">#}
+{#    {% set category = category is defined ? category : null %}#}
+{#    {% set discount = get_discount(game, category, curr) %}#}
+{#    <div class="img">#}
+{#        <img class="lazy" data-src="{{ game.imgBig }}" onerror="this.src='/img/empty.png'" alt="{{ game.title }}">#}
+{#        <div class="blur">#}
+{#            <img class="lazy" data-src="{{ game.imgBig }}" onerror="this.src='/img/empty.png'" alt="{{ game.title }}">#}
+{#        </div>#}
+{#    </div>#}
+{#    <div class="info">#}
+{#        <div class="name">{{ game.title }}</div>#}
+{#        <div class="info-row">#}
+{#            <div class="cat">{{ game.section }}</div>#}
+{#            {% if game.sales != -1 %}#}
+{#                <div class="count">#}
+{#                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">#}
+{#                        <path d="M14.5479 4.954C14.4233 4.774 14.2186 4.66667 13.9999 4.66667H4.88859L4.11925 2.82C3.91125 2.32133 3.42859 2 2.88859 2H1.33325V3.33333H2.88859L6.05125 10.9233C6.15459 11.1713 6.39725 11.3333 6.66659 11.3333H11.9999C12.2779 11.3333 12.5266 11.1607 12.6246 10.9013L14.6246 5.568C14.7013 5.36267 14.6726 5.13333 14.5479 4.954ZM11.5379 10H7.11125L5.44459 6H13.0379L11.5379 10Z"#}
+{#                              fill="#D1D1D1"/>#}
+{#                        <path d="M7 14C7.55228 14 8 13.5523 8 13C8 12.4477 7.55228 12 7 12C6.44772 12 6 12.4477 6 13C6 13.5523 6.44772 14 7 14Z"#}
+{#                              fill="#D1D1D1"/>#}
+{#                        <path d="M11.6667 14C12.219 14 12.6667 13.5523 12.6667 13C12.6667 12.4477 12.219 12 11.6667 12C11.1145 12 10.6667 12.4477 10.6667 13C10.6667 13.5523 11.1145 14 11.6667 14Z"#}
+{#                              fill="#D1D1D1"/>#}
+{#                    </svg>#}
+{#                    <span>{{ game.sales }}</span>#}
+{#                </div>#}
+{#            {% endif %}#}
+{#        </div>#}
+{#        <div class="cost">#}
+{#            {% if discount.percent > 0 and game.price(curr)|length < 4 %}#}
+{#                <div class="old">{{ discount.price }} <span class="rub">{{ get_curr_symbol(curr) }}</span></div>#}
+{#            {% endif %}#}
+{#            <div class="new">{{ game.price(curr) }} <span class="rub">{{ get_curr_symbol(curr) }}</span></div>#}
+{#        </div>#}
+{#        <div class="btn-orange">Купить</div>#}
+{#        <div class="cost-wrap-mob">#}
+{#            <div class="cost">#}
+{#                {% if discount.percent > 0 and game.price(curr)|length < 4 %}#}
+{#                    <div class="old">{{ discount.price }} <span class="rub">{{ get_curr_symbol(curr) }}</span></div>#}
+{#                {% endif %}#}
+{#                <div class="new">{{ game.price(curr) }} <span class="rub">{{ get_curr_symbol(curr) }}</span></div>#}
+{#            </div>#}
+{#            <div class="btn-orange">Купить</div>#}
+{#        </div>#}
+{#    </div>#}
+{#</a>#}
+
+
+<a class="product-item {% if sellers[game.seller] is defined %}{% if sellers[game.seller].priority == 100 %}orange{% else %}yellow{% endif %}{% endif %}" href="{{ path('game', {digiseller:game.gameId,slug:get_slug(game.title)}) }}">
+    {% set category = category is defined ? category : null %}
+    {% set discount = get_discount(game, category, curr) %}
+    <div class="product-item-img">
+        <img class="lazy" data-src="{{ game.img(233,233) }}" onerror="this.src='/img/empty.png'" height="233" width="233" alt="{{ game.title }}"
+{#                                       onerror="this.src='/img/empty.png'"#}
+        >
+        {% if discount.percent > 0 %}
+        <span class="product-item-cost-sale">-{{ discount.percent }}%</span>
+        {% endif %}
+    </div>
+    <span class="product-item-content">
+    <span class="product-item-title">{{ game.title }}</span>
+    <span class="product-item-cat">{{ game.section }}</span>
+        {% if game.sales != -1 %}
+            <span class="product-item-stats"><span>{{ game.sales }}</span>продаж</span>
+        {% endif %}
+    <span class="price-wrap">
+        <span class="cost">
+            {% if discount.percent > 0 and game.price(curr)|length < 4 %}
+                <span class="old">{{ discount.price }} {{ get_curr_symbol(curr) }}</span>
+            {% endif %}
+            <span class="new">{{ game.price(curr) }} {{ get_curr_symbol(curr) }}</span>
+        </span>
+        <span class="btn-wrap">
+            <span class="btn btn-blue" href="{{ path('game', {digiseller:game.gameId,slug:get_slug(game.title)}) }}">Купить</span>
+        </span>
+    </span>
+</span>
+</a>

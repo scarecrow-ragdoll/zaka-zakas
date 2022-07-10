@@ -1,0 +1,87 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block content_title %}Обновление товаров{% endblock %}
+{% block main %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <div class="form-group">
+        <button type="button" data-toggle="modal" data-target="#progressModal" onclick="updateCategory({{ maxPageCategory }}, 1)" class="btn btn-primary" style="margin-bottom: 12px;">Обновить
+            категории
+        </button>
+        <br>
+        <button type="button" data-toggle="modal" data-target="#progressModal" onclick="updateGame({{ maxPageGame }}, 1)" class="btn btn-primary" style="margin-bottom: 12px;">Обновить
+            товары
+        </button>
+        <br>
+        {#        <button type="button" onclick="update('desc')" class="btn btn-primary" style="margin-bottom: 12px;">Обновить описание товаров</button><br>#}
+        {#        <button type="button" onclick="update('desc_img')" class="btn btn-primary" style="margin-bottom: 12px;">Обновить описание товаров(Без картинок)</button><br>#}
+        {#        <button type="button" onclick="update('reviews')" class="btn btn-primary">Обновить отзывы</button>#}
+    </div>
+{#    <div id="preloading"#}
+{#         style="background: #e5e5e5; display: none; padding: 24px; position: fixed; opacity: 1; z-index: 11000; left: 50%; margin-left: -112px; top: 100px;">#}
+{#        <img src="/img/ajax-loader2.gif">#}
+{#        <div>Please, wait! <br> It takes a minute.</div>#}
+{#    </div>#}
+
+    <div class="modal fade" data-keyboard="false" data-backdrop="static" id="progressModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Загрузка</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 0%;" role="progressbar" aria-valuemin="0" aria-valuemax="{{ maxPageGame }}"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="/js/jquery.min.js"></script>
+    <script>
+{#        function update(param) {#}
+{#            $('#preloading').show();#}
+{#            $.get("/admin/ggsel-update/" + param, function (b) {#}
+{#                $("#preloading").html("<div style=\"margin:20px auto;font-size:12px; color:blue;\">" + b + "</div>");#}
+{#                setTimeout(function () {#}
+{#                    $("#preloading, #lean_overlay").hide();#}
+{#                }, 2000);#}
+{#            });#}
+{#        }#}
+
+        function updateCategory(maxPage, page) {
+            page = parseInt(page);
+            $('#progressModal').prop('aria-valuemax', maxPage)
+            if(page <= maxPage) {
+                $.get("/admin/ggsel-update-category/" + page, function (b) {
+                    var progress = page * 100 / maxPage;
+                    $('.progress-bar').css('width', progress+'%');
+                    updateCategory(maxPage, page + 1);
+                });
+            } else {
+                location.reload();
+            }
+        }
+
+        function updateGame(maxPage, page) {
+            page = parseInt(page);
+            if(page <= maxPage) {
+                $.get("/admin/ggsel-update-game/" + page, function (b) {
+                    var progress = page * 100 / maxPage;
+                    $('.progress-bar').css('width', progress+'%');
+                    updateGame(maxPage, page + 1);
+                });
+            } else {
+                location.reload();
+            }
+        }
+
+
+
+    </script>
+{% endblock %}

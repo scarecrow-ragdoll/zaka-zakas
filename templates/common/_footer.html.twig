@@ -1,0 +1,46 @@
+<footer class="footer">
+    <div class="container">
+        <div class="footer-wrap">
+            <div class="left">
+                <div class="logo-wrap"> 
+                    <a class="logo" href="{{ path('index') }}"> 
+                        <img class="lazy" data-src="/img/logo.png" height="24" width="170" alt=""/>
+                    </a>
+                    <div class="copyright">Все права защищены © 2021</div>
+                </div>
+{#                <ul class="footer-menu">#}
+{#                    <li><a class="footer-link" href="{{ path('static-page', {'static':'selleragreement'}) }}">Пользовательское соглащение</a></li>#}
+{#                    <li><a class="footer-link" href="{{ path('static-page', {'static':'privacy'}) }}">Политика конфиденциальности</a></li>#}
+{#                </ul>#}
+            </div>
+            <div class="center">
+                <ul class="footer-menu">
+                    <li><a class="footer-link" href="{{ path('static-page', {'static':'contacts'}) }}">Контакты</a></li>
+                    <li><a class="footer-link" rel="nofollow" href="https://ggsel.com/how" target="_blank">Заработать с нами</a></li>
+                    <li><a class="footer-link" href="{{ path('static-page', {'static':'howbuy'}) }}">Покупателю</a></li>
+                    <li><a class="footer-link" target="_blank" rel="nofollow" href="https://ggsel.com/sellers">Начать продавать</a></li>
+                    <li><a class="footer-link" href="https://ggsel.com/" target="_blank">GGSel.com</a></li>
+                </ul>
+            </div>
+            <div class="right">
+                <div class="pay-system">
+                    <div class="title">Способы оплаты</div>
+                    <div class="pay-system-items">
+                        <div class="pay-system-item"> <img class="lazy" data-src="/img/pay-webmoney.svg" height="30" width="30" alt=""/></div>
+                        <div class="pay-system-item"> <img class="lazy" data-src="/img/pay-steam.svg" height="30" width="30" alt=""/></div>
+                        <div class="pay-system-item"> <img class="lazy" data-src="/img/pay-bitcoin.svg" height="30" width="30" alt=""/></div>
+                        <div class="pay-system-item"> <img class="lazy" data-src="/img/pay-beeline.svg" height="30" width="30" alt=""/></div>
+                        <div class="pay-system-item"> <img class="lazy" data-src="/img/pay-megafon.svg" height="30" width="30" alt=""/></div>
+                        <div class="pay-system-item"> <img class="lazy" data-src="/img/pay-qiwi.svg" height="30" width="30" alt=""/></div>
+                        <div class="pay-system-item"> <img class="lazy" data-src="/img/pay-yandex.svg" height="23" width="30" alt=""/></div>
+                        <div class="pay-system-item"> <img class="lazy" data-src="/img/pay-mc.svg" height="45" width="30" alt=""/></div>
+                        <div class="pay-system-item"> <img class="lazy" data-src="/img/pay-mts.svg" height="30" width="30" alt=""/></div>
+                        <div class="pay-system-item"> <img class="lazy" data-src="/img/pay-tele2.svg" height="30" width="68" alt=""/></div>
+                        <div class="pay-system-item"> <img class="lazy" data-src="/img/pay-visa.svg" height="30" width="80" alt=""/></div>
+                    </div>
+                </div>
+                {% include 'common/_header_controls.html.twig' %}
+            </div>
+        </div>
+    </div>
+</footer>

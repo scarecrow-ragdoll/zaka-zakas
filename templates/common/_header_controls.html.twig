@@ -1,0 +1,67 @@
+<div class="header-controls">
+    {#                        <div class="lang">#}
+    {#                            <div class="lang-active"><img src="/img/icon-ru.svg" alt=""/></div>#}
+    {#                            <div class="lang-dropdown">#}
+    {#                                <div class="lang-dropdown-item">#}
+    {#                                    <div class="img-wrap"><img src="/img/icon-ru.svg" alt=""/></div>#}
+    {#                                    <div class="text">RU</div>#}
+    {#                                </div>#}
+    {#                                <div class="lang-dropdown-item">#}
+    {#                                    <div class="img-wrap"><img src="/img/icon-ru.svg" alt=""/></div>#}
+    {#                                    <div class="text">RU</div>#}
+    {#                                </div>#}
+    {#                                <div class="lang-dropdown-item">#}
+    {#                                    <div class="img-wrap"><img src="/img/icon-ru.svg" alt=""/></div>#}
+    {#                                    <div class="text">RU</div>#}
+    {#                                </div>#}
+    {#                                <div class="lang-dropdown-item">#}
+    {#                                    <div class="img-wrap"><img src="/img/icon-ru.svg" alt=""/></div>#}
+    {#                                    <div class="text">RU</div>#}
+    {#                                </div>#}
+    {#                                <div class="lang-dropdown-item">#}
+    {#                                    <div class="img-wrap"><img src="/img/icon-ru.svg" alt=""/></div>#}
+    {#                                    <div class="text">RU</div>#}
+    {#                                </div>#}
+    {#                                <div class="lang-dropdown-item">#}
+    {#                                    <div class="img-wrap"><img src="/img/icon-ru.svg" alt=""/></div>#}
+    {#                                    <div class="text">RU</div>#}
+    {#                                </div>#}
+    {#                                <div class="lang-dropdown-item">#}
+    {#                                    <div class="img-wrap"><img src="/img/icon-ru.svg" alt=""/></div>#}
+    {#                                    <div class="text">RU</div>#}
+    {#                                </div>#}
+    {#                                <div class="lang-dropdown-item">#}
+    {#                                    <div class="img-wrap"><img src="/img/icon-ru.svg" alt=""/></div>#}
+    {#                                    <div class="text">RU</div>#}
+    {#                                </div>#}
+    {#                                <div class="lang-dropdown-item">#}
+    {#                                    <div class="img-wrap"><img src="/img/icon-ru.svg" alt=""/></div>#}
+    {#                                    <div class="text">RU</div>#}
+    {#                                </div>#}
+    {#                                <div class="lang-dropdown-item">#}
+    {#                                    <div class="img-wrap"><img src="/img/icon-ru.svg" alt=""/></div>#}
+    {#                                    <div class="text">RU</div>#}
+    {#                                </div>#}
+    {#                                <div class="lang-dropdown-item">#}
+    {#                                    <div class="img-wrap"><img src="/img/icon-ru.svg" alt=""/></div>#}
+    {#                                    <div class="text">RU</div>#}
+    {#                                </div>#}
+    {#                            </div>#}
+    {#                        </div>#}
+    <div class="lang currency">
+        <div class="lang-active">
+            {% if curr == 'wmr' %}₽{% elseif curr == 'wmz'%}${% elseif curr == 'wme'%}€{% endif %}
+        </div>
+        <div class="lang-dropdown">
+            <div data-curr="wmr" class="lang-dropdown-item {% if curr == 'wmr' %}active{% endif %}">
+                ₽
+            </div>
+            <div data-curr="wmz" class="lang-dropdown-item {% if curr == 'wmz' %}active{% endif %}">
+                $
+            </div>
+            <div data-curr="wme" class="lang-dropdown-item {% if curr == 'wme' %}active{% endif %}">
+                €
+            </div>
+        </div>
+    </div>
+</div>

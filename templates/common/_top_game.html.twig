@@ -1,0 +1,104 @@
+{% set topGame = get_rand_top_game(category) %}
+{% if topGame %}
+    <div class="category-header">
+        <div class="category-header-img"><img src="{{ topGame.img }}" onerror="this.src='/img/empty.png'" alt="">
+            <a class="btn btn-blue" href="{{ path('game', {digiseller:topGame.gameId,slug:get_slug(topGame.title)}) }}">Подробнее</a>
+        </div>
+        <div class="catalog-header-content">
+            <h1 class="catalog-header-title">{{ category.titleSeo|capitalize }} на Zaka-zaks</h1>
+            <div class="catalog-header-desc">{{ topGame.title }}</div>
+            <div class="category-header-img">
+                <img class="lazy" data-src="{{ topGame.imgBig }}" onerror="this.src='/img/empty.png'" alt="">
+            </div>
+            {% set discount = get_discount(topGame, category, curr) %}
+            <div class="game-timer">
+                {% if discount.percent > 0 %}
+                    <div class="sale">Акция -{{ discount.percent }}%</div>
+                {% endif %}
+                <div class="cost">
+                    {% if discount.percent > 0 %}
+                        <div class="old">{{ discount.price }} {{ get_curr_symbol(curr) }}</div>
+                    {% endif %}
+                    <div class="price">{{ topGame.price(curr) }} {{ get_curr_symbol(curr) }}</div>
+                </div>
+                {% if discount.percent > 0 %}
+                    {% if topGame.saleEnd and topGame.isSaleEnd %}
+                        {% set interval = topGame.saleEndInterval %}
+                    {% else %}
+                        {% set interval = topGame.saleEndIntervalCustom %}
+                    {% endif %}
+                    <div class="timer">
+                        <div class="timer-item">
+                            <div class="num timer-hours">{{ interval.h }}</div>
+                            <div class="text">часов</div>
+                        </div>
+                        <div class="timer-item">
+                            <div class="num timer-minutes">{{ interval.i }}</div>
+                            <div class="text">минут</div>
+                        </div>
+                        <div class="timer-item">
+                            <div class="num timer-seconds">{{ interval.s }}</div>
+                            <div class="text">секунд</div>
+                        </div>
+                        <script type="text/javascript">
+                            Date.prototype.addHours = function (h) {
+                                this.setTime(this.getTime() + (h * 60 * 60 * 1000));
+                                return this.getHours();
+                            }
+
+                            function initTimer() {
+                                var hour = document.getElementsByClassName("timer-hours")[0];
+                                var minute = document.getElementsByClassName("timer-minutes")[0];
+                                var second = document.getElementsByClassName("timer-seconds")[0];
+                                var date = new Date();
+
+                                startTimer();
+                            }
+
+                            function startTimer() {
+                                var hour = document.getElementsByClassName("timer-hours")[0];
+                                var minute = document.getElementsByClassName("timer-minutes")[0];
+                                var second = document.getElementsByClassName("timer-seconds")[0];
+                                var h = hour.innerHTML.replace("<span>{{ 'hours'|trans }}</span>", '');
+                                var m = minute.innerHTML.replace("<span>{{ 'minutes'|trans }}</span>", '');
+                                var s = second.innerHTML.replace("<span>{{ 'seconds'|trans }}</span>", '');
+                                if (s == 0) {
+                                    m--;
+                                    s = 60;
+                                    if (m == 0) {
+                                        h--;
+                                        m = 60;
+                                    }
+                                    m--;
+                                }
+                                s--;
+                                hour.innerHTML = h;
+                                minute.innerHTML = m;
+                                second.innerHTML = s;
+                                setTimeout(startTimer, 1000);
+                            }
+
+                            initTimer();
+                        </script>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="catalog-header-footer">
+                <div class="form-group-checkbox">
+                    <label class="form-label">
+                        <span>Я ознакомился с</span> <a href="#">описанием товара</a>
+                        <input class="form-input" type="checkbox" checked="checked"><span
+                                class="checkmark"></span>
+                    </label>
+                </div>
+                <form id="buy_form" action="https://www.oplata.info/asp2/pay_gm.asp" method="get"
+                      target="_blank">
+                    <input type="hidden" name="ai" value="{{ get_config('seller_id').value }}">
+                    <input type="hidden" name="id_d" value="{{ topGame.gameId }}">
+                    <input type="hidden" name="curr" value="wmr">
+                </form>
+                <a class="btn btn-blue" onclick="document.getElementById('buy_form').submit();">Купить</a>
+            </div>
+        </div>
+    </div>
+{% endif %}

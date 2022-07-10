@@ -1,0 +1,25 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block content_title %}Обновление товаров{% endblock %}
+{% block main %}
+    <div class="form-group">
+        <button type="button" onclick="update('order')" class="btn btn-primary" style="margin-bottom: 12px;">Обновить наличае товаров</button><br>
+        <button type="button" onclick="update('desc')" class="btn btn-primary" style="margin-bottom: 12px;">Обновить описание товаров</button><br>
+        <button type="button" onclick="update('desc_img')" class="btn btn-primary" style="margin-bottom: 12px;">Обновить описание товаров(Без картинок)</button><br>
+        <button type="button" onclick="update('reviews')" class="btn btn-primary">Обновить отзывы</button>
+    </div>
+    <div id="preloading" style="background: #e5e5e5; display: none; padding: 24px; position: fixed; opacity: 1; z-index: 11000; left: 50%; margin-left: -112px; top: 100px;"><img src="/img/ajax-loader2.gif"><div>Please, wait! <br> It takes a minute.</div></div>
+
+    <script src="/js/jquery.min.js"></script>
+    <script>
+        function update(endpoint) {
+            $('#preloading').show();
+            $.get("/admin/update/" + endpoint, function (b) {
+                $("#preloading").html("<div style=\"margin:20px auto;font-size:12px; color:blue;\">" + b + "</div>");
+                setTimeout(function () {
+                    $("#preloading, #lean_overlay").hide();
+                }, 2000);
+            });
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {% include 'common/_header.html.twig' %}
+    <div class="page page-search not-found">
+        <div class="container">
+            <div class="breadcrumbs-wrap">
+                <div class="breadcrumbs">
+                    <a href="/"><span>Главная</span></a>
+                </div>
+            </div>
+            <div class="not-found-content">
+                <div class="text">По этому запросу ничего не найдено, но мы уже нашли для Вас несколько отличных товаров с хорошей скидкой!</div>
+            </div>
+            {% set recommend = get_recomended_games() %}
+            <div class="swiper-wrap">
+                <div class="swiper recommend-slider">
+                    <div class="swiper-wrapper">
+                        {% for game in recommend %}
+                            {% set category = category is defined ? category : null %}
+                            {% set discount = get_discount(game, category, curr) %}
+                            <div class="swiper-slide">
+                                <a class="product-item"
+                                   href="{{ path('game', {digiseller:game.gameId,slug:get_slug(game.title)}) }}">
+                                    <div class="product-item-img"><img src="{{ game.img(233,233) }}"
+                                                                       alt="{{ game.title }}"
+{#                                                                       onerror="this.src='/img/empty.png'"#}
+                                        >
+                                        {% if discount.percent > 0 %}
+                                            <span class="product-item-cost-sale">-{{ discount.percent }}%</span>
+                                        {% endif %}
+                                    </div>
+                                    <span class="product-item-content">
+                                        <span class="product-item-title">{{ game.title }}</span>
+                                        <span class="product-item-cat">{{ game.section }}</span>
+                                        <span class="product-item-stats"> <span>{{ game.sales }}</span>продаж</span>
+                                        <span class="price-wrap">
+                                            <span class="cost">
+                                                {% if discount.percent > 0 and game.price(curr)|length < 4 %}
+                                                    <span class="old">{{ discount.price }} {{ get_curr_symbol(curr) }}</span>
+                                                {% endif %}
+                                                <span class="new">{{ game.price(curr) }} {{ get_curr_symbol(curr) }}</span>
+                                            </span>
+                                            <span class="btn-wrap">
+                                                <div class="btn btn-blue"
+                                                     href="{{ path('game', {digiseller:game.gameId,slug:get_slug(game.title)}) }}">Купить</div>
+                                            </span>
+                                        </span>
+                                    </span>
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="swiper-button-prev swiper-recommend-prev"></div>
+                <div class="swiper-button-next swiper-recommend-next"></div>
+                <div class="swiper-pagination recommend-pagination"></div>
+            </div>
+        </div>
+    </div>
+    {% include 'common/_footer.html.twig' %}
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

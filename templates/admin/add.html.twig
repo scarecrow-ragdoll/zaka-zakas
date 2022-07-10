@@ -1,0 +1,24 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block content_title %}Добавить товар{% endblock %}
+{% block main %}
+    <form method="post">
+        {% if message is not empty %}
+            <div class="alert alert-primary" role="alert">
+                {{ message }}
+            </div>
+        {% endif %}
+        <div class="form-group">
+            <label for="game" class="col-sm-3 control-label">Id товара:</label>
+            <input id="game" name="game" class="col-sm-4 advanced-filter">
+
+        </div>
+        <div class="form-group">
+            <label for="subs" class="col-sm-3 control-label">Товар замены</label>
+            <input type="checkbox" name="subs">
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary mb-2">Добавить</button>
+        </div>
+    </form>
+{% endblock %}

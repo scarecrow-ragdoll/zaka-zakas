@@ -1,0 +1,124 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ get_category_title(category) }} купить STEAMBUY от {{ get_min_price(category)|number_format }} руб.{% endblock %}
+{% block description %}Покупайте {{ category.titleSeo }} на официальном сайте STEAMBUY COM! Цены от {{ get_min_price(category)|number_format }} руб. Мы принимаем все банковские карты! Моментальная доставка и гарантия! Более {{ count_of_category(category) }} товаров!{% endblock %}
+{% block keywords %}{{ category.seoKeywords }}{% endblock %}
+{% block body %}
+    {% include 'common/_header.html.twig' %}
+    <div class="page page-product">
+        <div class="container">
+            <div class="breadcrumbs-wrap">
+                <div class="breadcrumbs">
+                    {% set breadcrumbs = get_catalog_bredcrumbs(category) %}
+                    {% for brc in breadcrumbs %}
+                        {% if brc.url is defined %}
+                            <a href="{{ brc.url }}"><span>{{ brc.name }}</span></a>
+                        {% else %}
+                            <span class="active">{{ brc.name }}</span>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            {% include 'common/_top_game.html.twig' %}
+            <div class="search-content">
+                <aside class="sidebar">
+                    <div class="search">
+                        <form>
+                            <input class="input-text js-catalog-search" type="text" placeholder="Поиск по товарам">
+                            <input class="btn-search" type="button" value="">
+                            <div class="line-bot"></div>
+                        </form>
+                    </div>
+                    <div class="filter-mob">
+                        <svg width="22" height="22" viewbox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8.04804 10.859C8.39372 11.3592 8.29038 10.9424 8.29038 20.9135C8.29038 21.8058 9.3084 22.3165 10.0259 21.7828C13.0918 19.4712 13.7044 19.271 13.7044 18.1898C13.7044 10.9236 13.6197 11.3322 13.9467 10.859L18.9255 4.08203H3.06934L8.04804 10.859Z"
+                                  fill="white"></path>
+                            <path d="M20.8066 0.552578C20.6287 0.211836 20.2798 0 19.8957 0H2.09992C1.27041 0 0.782324 0.93573 1.25816 1.61562C1.26207 1.62216 1.20415 1.54288 2.12269 2.79297H19.8729C20.6556 1.72764 21.1789 1.26736 20.8066 0.552578Z"
+                                  fill="white"></path>
+                        </svg>
+                        <span>Фильтры</span>
+                    </div>
+                    <div class="filter-modal">
+                        <div class="filter-content"><a class="close" href="#"> </a>
+                            {% if childCategories|length > 0 %}
+                                <div class="sidebar-title">Подкатегории</div>
+                                <div class="sidebar-links">
+                                    <a class="sidebar-link check" href="#">
+                                        <span class="circle"></span>Все
+                                    </a>
+                                    {% for child in childCategories %}
+                                        <a class="sidebar-link" href="{{ path('catalog', {url:child.url}) }}">
+                                            <span class="circle"></span>{{ child.name }}
+                                        </a>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            <div class="sidebar-title">
+                                Цена<span class="num">({{ get_curr_symbol(curr) }})</span></div>
+                            <div class="slider-wrap">
+                                <div class="filter-price"></div>
+                                <div class="slider-top-wrap">
+                                    <div class="input-wrap">
+                                        <input class="input-with-keypress-0 js-inpit-min" data-curr="{{ curr }}" type="text" placeholder="{{ get_min_price(category, curr) }}"
+                                               value="{{ get_min_price(category, curr) }}" data-default="{{ get_min_price(category, curr) }}">
+                                        <input class="input-with-keypress-1 js-inpit-max" type="text" placeholder="{{ get_max_price(category, curr) }}"
+                                               value="{{ get_max_price(category, curr) }}" data-default="{{ get_max_price(category, curr) }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clear-wrap">
+{#                                 <a class="btn btn-clear" href="{{ path('catalog', {url:category.url}) }}">#}
+                                 <svg width="28" height="28" viewbox="0 0 28 28" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                 <path d="M16.0155 14.0002L24.5819 5.43337C25.1394 4.87613 25.1394 3.97516 24.5819 3.41793C24.0247 2.86069 23.1237 2.86069 22.5665 3.41793L13.9999 11.9847L5.43351 3.41793C4.87603 2.86069 3.97534 2.86069 3.41811 3.41793C2.86063 3.97516 2.86063 4.87613 3.41811 5.43337L11.9845 14.0002L3.41811 22.567C2.86063 23.1242 2.86063 24.0252 3.41811 24.5824C3.69581 24.8604 4.06094 25 4.42581 25C4.79068 25 5.15555 24.8604 5.43351 24.5824L13.9999 16.0156L22.5665 24.5824C22.8444 24.8604 23.2093 25 23.5742 25C23.9391 25 24.3039 24.8604 24.5819 24.5824C25.1394 24.0252 25.1394 23.1242 24.5819 22.567L16.0155 14.0002Z"
+                                 fill="white"></path>
+                                 </svg>
+                                 <span class="text js-clean-filter" style="cursor:pointer;">Очистить фильтр</span>
+{#                                 </a>#}
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+                <div class="search-result">
+                    <div class="search-filter">
+                        <div class="search-filter-wrap">
+                            <div class="search">
+                                <input class="input-text js-catalog-search-mob" type="text" placeholder="Поиск по товарам">
+                                <input class="btn-search" type="button" value="">
+                                <div class="line-bot"></div>
+                            </div>
+                            <span>Сортировать</span>
+                            <select class="search-dropdown js-select-order" name="state">
+                                <option value="&">По рекомендациям</option>
+                                <option value="order={{ curr }}&by=DESC">По убыванию цены</option>
+                                <option value="order={{ curr }}&by=ASC">По возрастанию цены</option>
+                            </select>
+                        </div>
+                    </div>
+                    {% set path = path('filter', {category:category.digiCatalog}) %}
+                    <div class="product-items js-game-container" data-path="{{ path }}" data-filter="{{ path }}"
+                         data-page="0">
+                        {% include 'common/_all_games.html.twig' %}
+                    </div>
+                    {% if games|length == 12 %}
+                        <div class="btn-center js-show-more">
+                            <a class="btn btn-blue"> <span>Посмотреть еще</span></a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'common/_footer.html.twig' %}
+{% endblock %}
+{% block ld %}
+    <script type="application/ld+json">
+        {{ get_ld_catalog(category)|json_encode()|raw }}
+        {{ get_ld_catalog_breadcrumb(category)|json_encode()|raw }}
+    </script>
+{% endblock %}
+{# Добавить отдельный скрипт на эту страницу #}
+{# {% block javascripts %}
+    {{ parent() }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/10.1.0/nouislider.min.js"></script>
+{% endblock %} #}
+{# Добавить отдельный скрипт на эту страницу  #}

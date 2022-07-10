@@ -1,0 +1,14 @@
+{% set curr = app.request.cookies.get('curr') ?? 'wmr' %}
+{% set sellers = get_sellers() %}
+{% if games|length > 0 %}
+    {% for game in games %}
+        {% include 'common/_game_item.html.twig' %}
+    {% endfor %}
+{% else %}
+    <div class="empty-product">По данным критериям, товаров не найдено.</div>
+{% endif %}
+ {% if games|length >= 12 %}
+     <script>$('.js-show-more').show();</script>
+ {% else %}
+     <script>$('.js-show-more').hide();</script>
+ {% endif %}

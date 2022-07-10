@@ -1,0 +1,97 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block content_title %}Категории и продавцы{% endblock %}
+{% block main %}
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+
+
+    <button class="action-new btn btn-primary" onclick="ExportToExcel('xlsx');">Скачать Excel</button>
+
+    {% for category in categories %}
+        <table class="table table-bordered table-striped table-hover sonata-ba-list" id="testTable">
+            <thead>
+            <tr class="sonata-ba-list-field-header">
+                <th class="sonata-ba-list-field-header-text  sonata-ba-list-field-header-order-asc">
+                    Название категории
+                </th>
+                <th class="sonata-ba-list-field-header-text  sonata-ba-list-field-header-order-asc">
+                    Дочерняя категория
+                </th>
+                <th class="sonata-ba-list-field-header-text  sonata-ba-list-field-header-order-asc">
+                    ID категории
+                </th>
+                <th class="sonata-ba-list-field-header-text  sonata-ba-list-field-header-order-asc">
+                    URL категории
+                </th>
+                <th class="sonata-ba-list-field-header-text  sonata-ba-list-field-header-order-asc">
+                    Продавцы
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in category %}
+                <tr>
+                    <td>{{ item.category.name }}</td>
+                    <td></td>
+                    <td>{{ item.category.digiCatalog }}</td>
+                    <td>{{ item.category.url }}</td>
+                    <td> {% if sellerCategory[item.category.digiCatalog].sellers|length > 0 %}
+                            {% for s in sellerCategory[item.category.digiCatalog].sellers %}
+                                {% if s is not empty %}
+                                    {{ sellers[s].seller ~ ' - ' ~ sellers[s].percent ~ '%' }},
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </td>
+                </tr>
+                {% for child in item.children %}
+                    <tr>
+                        <td></td>
+                        <td>{{ child.breadcrumbs_title }}</td>
+                        <td>{{ child.digi_catalog }}</td>
+                        <td>{{ child.url }}</td>
+                        <td> {% if sellerCategory[child.digi_catalog].sellers|length > 0 %}
+                                {% for s in sellerCategory[child.digi_catalog].sellers %}
+                                    {% if s is not empty %}
+                                        {{ sellers[s].seller ~ ' - ' ~ sellers[s].percent ~ '%' }},
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endfor %}
+
+    <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+    <script type="text/javascript">
+        function ExportToExcel(type, fn, dl) {
+            var elt = document.getElementById('testTable');
+            var wb = XLSX.utils.table_to_book(elt, {sheet: "sheet1"});
+            return dl ?
+                XLSX.write(wb, {bookType: type, bookSST: true, type: 'base64'}) :
+                XLSX.writeFile(wb, fn || ('MySheetName.' + (type || 'xlsx')));
+        }
+
+        // $('#testTable').DataTable();
+        // let table = new DataTable('#testTable', {
+        //     paging: false,
+        //     dom: 'Bfrtip',
+        //     buttons: [
+        //         'copyHtml5',
+        //         'excelHtml5',
+        //         'csvHtml5',
+        //         'pdfHtml5'
+        //     ],
+        // });
+    </script>
+
+
+{% endblock %}
