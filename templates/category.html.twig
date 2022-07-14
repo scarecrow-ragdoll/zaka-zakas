@@ -4,94 +4,120 @@
 {% block keywords %}{{ category.seoKeywords }}{% endblock %}
 {% block body %}
     {% include 'common/_header.html.twig' %}
-    <div class="page page-product">
+    <div class="page page-category">
         <div class="container">
-            <div class="breadcrumbs-wrap">
-                <div class="breadcrumbs">
+            <div class="breadcrumb-wrap">
+                <ul class="breadcrumbs">
                     {% set breadcrumbs = get_catalog_bredcrumbs(category) %}
                     {% for brc in breadcrumbs %}
-                        {% if brc.url is defined %}
-                            <a href="{{ brc.url }}"><span>{{ brc.name }}</span></a>
-                        {% else %}
-                            <span class="active">{{ brc.name }}</span>
-                        {% endif %}
+                        <li>
+                            {% if brc.url is defined %}
+                                <a href="{{ brc.url }}">{{ brc.name }}</a>
+                            {% else %}
+                                {{ brc.name }}
+                            {% endif %}
+                        </li>
                     {% endfor %}
-                </div>
+                </ul>
             </div>
             {% include 'common/_top_game.html.twig' %}
             <div class="search-content">
                 <aside class="sidebar">
-                    <div class="search">
-                        <form>
-                            <input class="input-text js-catalog-search" type="text" placeholder="Поиск по товарам">
-                            <input class="btn-search" type="button" value="">
-                            <div class="line-bot"></div>
-                        </form>
-                    </div>
                     <div class="filter-mob">
-                        <svg width="22" height="22" viewbox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M8.04804 10.859C8.39372 11.3592 8.29038 10.9424 8.29038 20.9135C8.29038 21.8058 9.3084 22.3165 10.0259 21.7828C13.0918 19.4712 13.7044 19.271 13.7044 18.1898C13.7044 10.9236 13.6197 11.3322 13.9467 10.859L18.9255 4.08203H3.06934L8.04804 10.859Z"
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none">
+                            <path d="M7.5 14.5C5.92 14.5 4.597 15.56 4.163 17H2V19H4.163C4.597 20.44 5.92 21.5 7.5 21.5C9.08 21.5 10.403 20.44 10.837 19H22V17H10.837C10.403 15.56 9.08 14.5 7.5 14.5ZM7.5 19.5C6.673 19.5 6 18.827 6 18C6 17.173 6.673 16.5 7.5 16.5C8.327 16.5 9 17.173 9 18C9 18.827 8.327 19.5 7.5 19.5ZM16.5 8.5C14.92 8.5 13.597 9.56 13.163 11H2V13H13.163C13.597 14.44 14.92 15.5 16.5 15.5C18.08 15.5 19.403 14.44 19.837 13H22V11H19.837C19.403 9.56 18.08 8.5 16.5 8.5ZM16.5 13.5C15.673 13.5 15 12.827 15 12C15 11.173 15.673 10.5 16.5 10.5C17.327 10.5 18 11.173 18 12C18 12.827 17.327 13.5 16.5 13.5Z"
                                   fill="white"></path>
-                            <path d="M20.8066 0.552578C20.6287 0.211836 20.2798 0 19.8957 0H2.09992C1.27041 0 0.782324 0.93573 1.25816 1.61562C1.26207 1.62216 1.20415 1.54288 2.12269 2.79297H19.8729C20.6556 1.72764 21.1789 1.26736 20.8066 0.552578Z"
+                            <path d="M12.837 5C12.403 3.56 11.08 2.5 9.5 2.5C7.92 2.5 6.597 3.56 6.163 5H2V7H6.163C6.597 8.44 7.92 9.5 9.5 9.5C11.08 9.5 12.403 8.44 12.837 7H22.125V5H12.837ZM9.5 7.5C8.673 7.5 8 6.827 8 6C8 5.173 8.673 4.5 9.5 4.5C10.327 4.5 11 5.173 11 6C11 6.827 10.327 7.5 9.5 7.5Z"
                                   fill="white"></path>
                         </svg>
-                        <span>Фильтры</span>
+                        <span>Показать фильтры</span>
                     </div>
                     <div class="filter-modal">
-                        <div class="filter-content"><a class="close" href="#"> </a>
-                            {% if childCategories|length > 0 %}
-                                <div class="sidebar-title">Подкатегории</div>
-                                <div class="sidebar-links">
-                                    <a class="sidebar-link check" href="#">
-                                        <span class="circle"></span>Все
-                                    </a>
-                                    {% for child in childCategories %}
-                                        <a class="sidebar-link" href="{{ path('catalog', {url:child.url}) }}">
-                                            <span class="circle"></span>{{ child.name }}
-                                        </a>
-                                    {% endfor %}
-                                </div>
-                            {% endif %}
-                            <div class="sidebar-title">
-                                Цена<span class="num">({{ get_curr_symbol(curr) }})</span></div>
+                        <div class="filter-content">
+                            <a class="close-filter" href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewbox="0 0 20 20"
+                                     fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                          d="M4.70711 2.29289C4.31658 1.90237 3.68342 1.90237 3.29289 2.29289C2.90237 2.68342 2.90237 3.31658 3.29289 3.70711L9.08579 9.5L3.29289 15.2929C2.90237 15.6834 2.90237 16.3166 3.29289 16.7071C3.68342 17.0976 4.31658 17.0976 4.70711 16.7071L10.5 10.9142L16.2929 16.7071C16.6834 17.0976 17.3166 17.0976 17.7071 16.7071C18.0976 16.3166 18.0976 15.6834 17.7071 15.2929L11.9142 9.5L17.7071 3.70711C18.0976 3.31658 18.0976 2.68342 17.7071 2.29289C17.3166 1.90237 16.6834 1.90237 16.2929 2.29289L10.5 8.08579L4.70711 2.29289Z"
+                                          fill="white"></path>
+                                </svg>
+                            </a>
+                            <div class="header-search">
+                                <form>
+                                    <input class="btn-search" type="button" value="">
+                                    <input class="input-text js-catalog-search" type="text" placeholder="Поиск по товарам">
+                                    <div class="line-bot"></div>
+                                </form>
+                            </div>
+                            <div class="sidebar-title">Цена</div>
                             <div class="slider-wrap">
                                 <div class="filter-price"></div>
                                 <div class="slider-top-wrap">
                                     <div class="input-wrap">
-                                        <input class="input-with-keypress-0 js-inpit-min" data-curr="{{ curr }}" type="text" placeholder="{{ get_min_price(category, curr) }}"
-                                               value="{{ get_min_price(category, curr) }}" data-default="{{ get_min_price(category, curr) }}">
-                                        <input class="input-with-keypress-1 js-inpit-max" type="text" placeholder="{{ get_max_price(category, curr) }}"
-                                               value="{{ get_max_price(category, curr) }}" data-default="{{ get_max_price(category, curr) }}">
+                                        <input class="input-with-keypress-0 js-inpit-min" data-curr="{{ curr }}"
+                                               type="text" placeholder="{{ get_min_price(category, curr) }}"
+                                               value="{{ get_min_price(category, curr) }}"
+                                               data-default="{{ get_min_price(category, curr) }}">
+                                        <input class="input-with-keypress-1 js-inpit-max" type="text"
+                                               placeholder="{{ get_max_price(category, curr) }}"
+                                               value="{{ get_max_price(category, curr) }}"
+                                               data-default="{{ get_max_price(category, curr) }}">
                                     </div>
                                 </div>
                             </div>
+
+
+                            {% if childCategories|length > 0 %}
+                                <div class="sidebar-title">категории</div>
+                                <div class="sidebar-links">
+                                    <div class="filter-items">
+                                        <a class="filter-item active" href="#">
+                                            <svg width="12" height="13" viewbox="0 0 12 13" fill="none"
+                                                 xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M8.5 6.51953L4.5 3.01953L4.5 10.0195L8.5 6.51953Z"
+                                                      fill="#7D87B0"></path>
+                                            </svg>
+                                            Все товары</a>
+                                        {% for child in childCategories %}
+                                            <a class="filter-item" href="{{ path('catalog', {url:child.url}) }}">
+                                                <svg width="12" height="13" viewbox="0 0 12 13" fill="none"
+                                                     xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M8.5 6.51953L4.5 3.01953L4.5 10.0195L8.5 6.51953Z"
+                                                          fill="#7D87B0"></path>
+                                                </svg>
+                                                {{ child.name }}</a>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            {% endif %}
                             <div class="clear-wrap">
-{#                                 <a class="btn btn-clear" href="{{ path('catalog', {url:category.url}) }}">#}
-                                 <svg width="28" height="28" viewbox="0 0 28 28" fill="none"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                 <path d="M16.0155 14.0002L24.5819 5.43337C25.1394 4.87613 25.1394 3.97516 24.5819 3.41793C24.0247 2.86069 23.1237 2.86069 22.5665 3.41793L13.9999 11.9847L5.43351 3.41793C4.87603 2.86069 3.97534 2.86069 3.41811 3.41793C2.86063 3.97516 2.86063 4.87613 3.41811 5.43337L11.9845 14.0002L3.41811 22.567C2.86063 23.1242 2.86063 24.0252 3.41811 24.5824C3.69581 24.8604 4.06094 25 4.42581 25C4.79068 25 5.15555 24.8604 5.43351 24.5824L13.9999 16.0156L22.5665 24.5824C22.8444 24.8604 23.2093 25 23.5742 25C23.9391 25 24.3039 24.8604 24.5819 24.5824C25.1394 24.0252 25.1394 23.1242 24.5819 22.567L16.0155 14.0002Z"
-                                 fill="white"></path>
-                                 </svg>
-                                 <span class="text js-clean-filter" style="cursor:pointer;">Очистить фильтр</span>
-{#                                 </a>#}
-                            </div>
+                                <a class="btn btn-gradient js-clean-filter">
+                                    <svg width="17" height="16" viewbox="0 0 17 16" fill="none"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M6.61454 10.828L8.49988 8.94266L10.3852 10.828L11.3279 9.88533L9.44254 8L11.3279 6.11466L10.3852 5.172L8.49988 7.05733L6.61454 5.172L5.67188 6.11466L7.55721 8L5.67188 9.88533L6.61454 10.828Z"
+                                              fill="white"></path>
+                                        <path d="M8.49967 14.6667C12.1757 14.6667 15.1663 11.676 15.1663 8.00001C15.1663 4.32401 12.1757 1.33334 8.49967 1.33334C4.82367 1.33334 1.83301 4.32401 1.83301 8.00001C1.83301 11.676 4.82367 14.6667 8.49967 14.6667ZM8.49967 2.66668C11.4403 2.66668 13.833 5.05934 13.833 8.00001C13.833 10.9407 11.4403 13.3333 8.49967 13.3333C5.55901 13.3333 3.16634 10.9407 3.16634 8.00001C3.16634 5.05934 5.55901 2.66668 8.49967 2.66668Z"
+                                              fill="white"></path>
+                                    </svg>
+                                    Сбросить фильтры</a></div>
                         </div>
                     </div>
                 </aside>
                 <div class="search-result">
-                    <div class="search-filter">
-                        <div class="search-filter-wrap">
-                            <div class="search">
-                                <input class="input-text js-catalog-search-mob" type="text" placeholder="Поиск по товарам">
-                                <input class="btn-search" type="button" value="">
-                                <div class="line-bot"></div>
-                            </div>
-                            <span>Сортировать</span>
-                            <select class="search-dropdown js-select-order" name="state">
-                                <option value="&">По рекомендациям</option>
-                                <option value="order={{ curr }}&by=DESC">По убыванию цены</option>
-                                <option value="order={{ curr }}&by=ASC">По возрастанию цены</option>
+                    <div class="seller-items-header">
+                        <div class="prod-counter">{{ count }} товар</div>
+                        <div class="mob-sort">
+                            <select class="js-init-select">
+                                <option value="1">Рекомендациям</option>
+                                <option value="2">Цене</option>
+                                <option value="3">Популярности</option>
                             </select>
+                        </div>
+                        <div class="seller-products-sort"><span>Сортировать по:</span>
+                            <div class="sort-links">
+                                <a class="active" href="#">Рекомендациям</a>
+                                <a href="#">Цене</a>
+                                <a href="#">Популярности</a></div>
                         </div>
                     </div>
                     {% set path = path('filter', {category:category.digiCatalog}) %}
@@ -104,16 +130,60 @@
                             <a class="btn btn-blue"> <span>Посмотреть еще</span></a>
                         </div>
                     {% endif %}
+                    <div class="pagination">
+                        <div class="pagination-links"><a class="pagination-link pagination-link-prev disable" href="#">
+                                <svg width="34" height="34" viewbox="0 0 34 34" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clip0_1345_730)">
+                                        <path d="M24.0711 17H9.92893" stroke="#7D87B0" stroke-width="2"
+                                              stroke-linecap="round" stroke-linejoin="round"></path>
+                                        <path d="M17 24.071L9.92893 17L17 9.92891" stroke="#7D87B0" stroke-width="2"
+                                              stroke-linecap="round" stroke-linejoin="round"></path>
+                                    </g>
+                                    <defs>
+                                        <clippath id="clip0_1345_730">
+                                            <rect width="24" height="24" fill="white"
+                                                  transform="translate(17 33.9706) rotate(-135)"></rect>
+                                        </clippath>
+                                    </defs>
+                                </svg>
+                            </a>
+                            <a class="pagination-link active" href="#">1</a>
+                            <a class="pagination-link" href="#">2</a>
+                            <a class="pagination-link" href="#">3</a>
+                            <a class="pagination-link" href="#">...</a>
+                            <a class="pagination-link pagination-link-next disable" href="#">
+                                <svg width="34" height="34" viewbox="0 0 34 34" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clip0_1345_730)">
+                                        <path d="M24.0711 17H9.92893" stroke="#7D87B0" stroke-width="2"
+                                              stroke-linecap="round" stroke-linejoin="round"></path>
+                                        <path d="M17 24.071L9.92893 17L17 9.92891" stroke="#7D87B0" stroke-width="2"
+                                              stroke-linecap="round" stroke-linejoin="round"></path>
+                                    </g>
+                                    <defs>
+                                        <clippath id="clip0_1345_730">
+                                            <rect width="24" height="24" fill="white"
+                                                  transform="translate(17 33.9706) rotate(-135)"></rect>
+                                        </clippath>
+                                    </defs>
+                                </svg>
+                            </a></div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
     {% include 'common/_footer.html.twig' %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/11.1.0/nouislider.min.js"></script>
 {% endblock %}
 {% block ld %}
     <script type="application/ld+json">
         {{ get_ld_catalog(category)|json_encode()|raw }}
         {{ get_ld_catalog_breadcrumb(category)|json_encode()|raw }}
+
+
     </script>
 {% endblock %}
 {# Добавить отдельный скрипт на эту страницу #}
@@ -121,4 +191,4 @@
     {{ parent() }}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/10.1.0/nouislider.min.js"></script>
 {% endblock %} #}
-{# Добавить отдельный скрипт на эту страницу  #}
+{# Добавить отдельный скрипт на эту страницу       #}

@@ -271,19 +271,19 @@ class AppExtension extends AbstractExtension
         }
         if ($meta == 'description') {
             if ($url == 'all-games') {
-                return 'Покупайте видеоигры для Стим, Xbox, Origin по максимально низким ценам на Steambuys! Гарантия моментального получения для каждой покупки! Заходите и выбирайте!';
+                return 'Покупайте видеоигры для Стим, Xbox, Origin по максимально низким ценам на Zaka-zakas! Гарантия моментального получения для каждой покупки! Заходите и выбирайте!';
             }
             if ($url == 'software') {
-                return 'Покупайте лицензионные ключи Windows, MS Office, NordVPN по максимально низким ценам на Steambuys! Гарантия моментального получения для каждой покупки! Заходите и выбирайте!';
+                return 'Покупайте лицензионные ключи Windows, MS Office, NordVPN по максимально низким ценам на Zaka-zakas! Гарантия моментального получения для каждой покупки! Заходите и выбирайте!';
             }
             if ($url == 'subscription-services') {
-                return 'Оформляйте подписку Нетфликс, Спотифай, Винк по максимально низким ценам на Steambuys! Гарантия моментального получения для каждой покупки! Заходите и выбирайте!';
+                return 'Оформляйте подписку Нетфликс, Спотифай, Винк по максимально низким ценам на Zaka-zakas! Гарантия моментального получения для каждой покупки! Заходите и выбирайте!';
             }
             if ($url == 'pre-orders-first') {
-                return 'Оформляйте предзаказы видеоигр для Стим, Xbox, Origin по максимально низким ценам на Steambuys! Гарантия моментального получения для каждой покупки! Заходите и выбирайте!';
+                return 'Оформляйте предзаказы видеоигр для Стим, Xbox, Origin по максимально низким ценам на Zaka-zakas! Гарантия моментального получения для каждой покупки! Заходите и выбирайте!';
             }
             if ($url == 'digital-goods') {
-                return 'Покупайте цифровые товары по максимально низким ценам на Steambuys! Гарантия моментального получения для каждой покупки! Заходите и выбирайте!';
+                return 'Покупайте цифровые товары по максимально низким ценам на Zaka-zakas! Гарантия моментального получения для каждой покупки! Заходите и выбирайте!';
             }
         }
 
@@ -294,10 +294,10 @@ class AppExtension extends AbstractExtension
     {
         if ($meta == 'title') {
             if ($url == 'howbuy') {
-                return 'Инструкция для покупателей Steambuys.net';
+                return 'Инструкция для покупателей Zaka-zakas.com';
             }
             if ($url == 'contacts') {
-                return 'Контакты Steambuys.net';
+                return 'Контакты Zaka-zakas.com';
             }
         }
         if ($meta == 'description') {
@@ -305,7 +305,7 @@ class AppExtension extends AbstractExtension
                 return 'FAQ для покупателей. Подробно расскажем, как выбрать интересующий товар и совершить покупку на Стимбайс. При возникновении трудностей, наша техподдержка с радостью поможет Вам!';
             }
             if ($url == 'contacts') {
-                return 'Техническая поддержка Steambuys для покупателей и продавцов. По всем вопросам обращайтесь по почте help@steambuys.net или в чат поддержки.';
+                return 'Техническая поддержка Zaka-zakas для покупателей и продавцов. По всем вопросам обращайтесь по почте help@zaka-zakas.com или в чат поддержки.';
             }
         }
 
@@ -324,7 +324,7 @@ class AppExtension extends AbstractExtension
 
     public function getRandTopGame(GgselCategory $ggselCategory)
     {
-        $games = $this->entityManager->getRepository(Digiseller::class)->getByCriterias(['category' => $ggselCategory->getDigiCatalog(), 'limit' => 4]);
+        $games = $this->entityManager->getRepository(Digiseller::class)->getByCriterias(['category' => $ggselCategory->getDigiCatalog()]);
         if ($games) {
             return $games[array_rand($games, 1)];
         }

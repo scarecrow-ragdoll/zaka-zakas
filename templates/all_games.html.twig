@@ -4,21 +4,31 @@
 {% block body %}
     {% include 'common/_header.html.twig' with {'category': false} %}
     <div class="page page-category">
+        <div class="instruction-header">
+            <div class="instruction-header-bg">
+                <picture>
+                    <source media="(max-width: 500px)" srcset="/img/catalog-bg-mob.png">
+                    <img src="/img/catalog-bg.png" alt="">
+                </picture>
+            </div>
+            <div class="container">
+                <h1>Игры</h1>
+            </div>
+        </div>
         <div class="container">
-            <h1 style="display:none;">{{ contentType[typeId].name }} по скидкам до 95%!</h1>
-            <nav class="nav">
+
+            <div class="btn-nav">
                 {% for id, type in contentType %}
                     <a class="nav-link {% if id == typeId %}active{% endif %}"
-                    href="{{ path('all-games-type', {type:type.url}) }}">{{ type.name }}</a>
+                       href="{{ path('all-games-type', {type:type.url}) }}">{{ type.name }}</a>
                 {% endfor %}
-            </nav>
+            </div>
             <div class="letters-wrap">
                 <div class="letters-wrap-content">
                     <div class="letters">
                         {% for literal in games|keys %}
                             <a class="letters-item" href="#{{ literal }}">{{ literal }}</a>
-                        {% endfor %}
-                    </div>
+                        {% endfor %}</div>
                     <div class="letters-content">
                         <div class="letters-cats">
                             <div class="letters-cat-item">
@@ -28,13 +38,13 @@
                                         {% for category in categories %}
                                             <div class="letters-cat-block">
                                                 <a class="letters-cat-block__link"
-                                                href="{{ path('catalog', {url:category.category.url}) }}">
+                                                   href="{{ path('catalog', {url:category.category.url}) }}">
                                                     {{ category.category.name }}
                                                 </a>
                                                 <div class="letters-cat-block__links">
                                                     {% for child in category.children %}
                                                         <a class="letters-cat-block__links-item"
-                                                        href="{{ path('catalog', {url:child.url}) }}">{{ child.breadcrumbs_title }}</a>
+                                                           href="{{ path('catalog', {url:child.url}) }}">{{ child.breadcrumbs_title }}</a>
                                                     {% endfor %}
                                                 </div>
                                             </div>
@@ -48,10 +58,5 @@
             </div>
         </div>
     </div>
-    <a href="#" class="btn-to-top">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
-            <path d="M310.6 246.6l-127.1 128C176.4 380.9 168.2 384 160 384s-16.38-3.125-22.63-9.375l-127.1-128C.2244 237.5-2.516 223.7 2.438 211.8S19.07 192 32 192h255.1c12.94 0 24.62 7.781 29.58 19.75S319.8 237.5 310.6 246.6z"/>
-        </svg>
-    </a>
     {% include 'common/_footer.html.twig' %}
 {% endblock %}

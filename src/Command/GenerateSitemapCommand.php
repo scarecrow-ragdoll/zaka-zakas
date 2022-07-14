@@ -92,7 +92,7 @@ class GenerateSitemapCommand extends Command
 
     private function gen(string $name, array $params = []): string
     {
-        return 'https://steambuys.net' . $this->urlGenerator->generate($name, $params);
+        return 'https://zaka-zakas.com' . $this->urlGenerator->generate($name, $params);
     }
 
     private function writeToFile($name)
@@ -115,7 +115,7 @@ class GenerateSitemapCommand extends Command
         $content = '<?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . PHP_EOL;
         foreach ($this->parent as $row) {
-            $content .= '<sitemap><loc>https://steambuys.net/' . $row . '.xml</loc></sitemap>' .
+            $content .= '<sitemap><loc>https://zaka-zakas.com/' . $row . '.xml</loc></sitemap>' .
 //                '<priority>' . $row['priority'] . '</priority></url> '.
                 PHP_EOL;
         }

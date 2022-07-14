@@ -5,7 +5,21 @@
         {% include 'common/_game_item.html.twig' %}
     {% endfor %}
 {% else %}
-    <div class="empty-product">По данным критериям, товаров не найдено.</div>
+    <div class="search-not-found" style="margin-top: 0px; width: 100%;">
+        <svg width="217" height="105" viewbox="0 0 217 105" fill="none"
+             xmlns="http://www.w3.org/2000/svg">
+            <circle cx="187.719" cy="76.5" r="28.5" fill="#F32B81"></circle>
+            <circle cx="187" cy="76.5" r="21.5" fill="#12121D"></circle>
+            <path d="M161.281 72L121.281 33V17L134.281 13.5L131.281 4.00003H141.281L186.281 51"
+                  stroke="#F32B81" stroke-width="7" stroke-linecap="round"></path>
+            <path d="M67.7812 4L5.78125 66L28.7812 87.5L96.7812 24L96.7812 14L87.2812 17L83.7812 4L67.7812 4Z"
+                  stroke="#F32B81" stroke-width="7" stroke-linecap="round"></path>
+            <rect x="70.9133" y="50.0276" width="22.7762" height="31.3691"
+                  transform="rotate(44.8917 70.9133 50.0276)" stroke="#F32B81"
+                  stroke-width="6"></rect>
+        </svg>
+        <div class="search-not-found-desc">По вашему запросу ничего не найдено!</div>
+    </div>
 {% endif %}
  {% if games|length >= 12 %}
      <script>$('.js-show-more').show();</script>

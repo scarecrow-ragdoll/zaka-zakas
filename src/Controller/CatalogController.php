@@ -52,7 +52,7 @@ class CatalogController extends AbstractController
         if ($url == 'igry-po-nazvaniyu')
             return $this->redirectToRoute('all-games');
         if ($url == 'everspace-2-first')
-            return $this->redirectToRoute('catalog', ['url' => 'everspace-2-20908-steambuy'], 301);
+            return $this->redirectToRoute('catalog', ['url' => 'everspace-2-20908'], 301);
 
         $ggselCategory = $this->entityManager->getRepository(GgselCategory::class)->findOneBy(['url' => $url]);
         if (!$ggselCategory) {
@@ -61,11 +61,13 @@ class CatalogController extends AbstractController
 
         $childCategories = $this->entityManager->getRepository(GgselCategory::class)->findChildOne($ggselCategory->getDigiCatalog());
         $games = $this->entityManager->getRepository(Digiseller::class)->getByCriterias(['category' => $ggselCategory->getDigiCatalog()]);
+        $count = $this->entityManager->getRepository(Digiseller::class)->getIds(['category' => $ggselCategory->getDigiCatalog()], true)['cnt'];
 
         return $this->render('category.html.twig', [
             'games' => $games,
             'childCategories' => $childCategories,
             'category' => $ggselCategory,
+            'count' => $count
         ]);
     }
 
@@ -123,7 +125,7 @@ class CatalogController extends AbstractController
     }
 
     /**
-     * @Route("/seller/{seller}-steambuy", name="seller")
+     * @Route("/seller/{seller}", name="seller")
      * @ParamConverter("seller", options={"mapping": {"seller": "sellerId"}})
      */
     public function seller(Seller $seller)

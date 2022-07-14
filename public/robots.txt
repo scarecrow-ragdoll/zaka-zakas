@@ -2,5 +2,5 @@ User-agent: *
 Disallow: /login
 Disallow: /admin
 
-Host: steambuys.net
-Sitemap: https://steambuys.net/sitemap.xml
+Host: zaka-zakas.com
+Sitemap: https://zaka-zakas.com/sitemap.xml

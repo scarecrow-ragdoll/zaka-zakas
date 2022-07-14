@@ -1,279 +1,185 @@
-import Swiper from 'swiper/bundle';
-import noUiSlider from 'nouislider';
-
 $(document).ready(function () {
 
-	$('.burger').click(function () {
-		$(this).toggleClass('is-active');
-		$('.header-menu-mob').toggle();
-		$('body,html').toggleClass('overflow');
-		$('.header').toggleClass('new-bg');
-	})
-
-	$('.nav-link').click(function () {
-		$(".nav-link.active").removeClass('active');
-		$(this).addClass('active');
-	});
-
-	$('.lang').click(function () {
-		var th = $(this);
-		$(this).toggleClass('active');
-
-		$(document).mouseup(function (e) {
-			var div = th;
-			if (!div.is(e.target)
-				&& div.has(e.target).length === 0) {
-				div.removeClass('active');
-			}
-		});
-	});
-
-	$('.js-init-select').select2();
-
-	if ( $(window).width() > 662 ) {
-		$('.header-popup-link').mouseenter(function () {
-			$('.header-popup-item').hide();
-			$(this).find('.header-popup-item').show();
-		});
-
-		$('.header-popup-item').mouseleave(function () {
-			$(this).hide();
-		});
-
-		$('.header-popup-link').mouseleave(function () {
-			$('.header-popup-item').hide();
-		});
+	function getCookie(name) {
+		const value = `; ${document.cookie}`;
+		const parts = value.split(`; ${name}=`);
+		if (parts.length === 2) return parts.pop().split(';').shift();
+		return 'wmr';
 	}
 
-	if ($('.js-curtain').length > 0) {
-		$('.js-curtain').click(function () {
-			$(this).next().slideToggle();
-			$(this).closest('.instruction-item').toggleClass('active');
-		});
-	}
+	var enterOrFocusout = 0;
+	var parse = getCookie('curr') === 'wmr' ? 'parseInt' : 'parseFloat';
 
-	if ( $(window).width() < 661 ) {
-		$('.js-open-cat').click(function() {
-			$('.header-popup-mob').addClass('show');
-		});
-
-		$('.header-popup-link').click(function() {
-			if ($(this).children('.header-popup-item').hasClass('show')) {
-				$('.header-popup-item').removeClass('show');
-			} else {
-				$(this).children('.header-popup-item').addClass('show');
-			}
-		});
-
-		$('.js-open-cat').click(function() {
-			$('.header').addClass('cat-open');
-		});
-	
-		$('.cat-close').click(function() {
-			$('.header').removeClass('cat-open')
-		});
-	}
-
-	$('.cat-close').click(function() {
-		$('.header-popup-mob').removeClass('show');
+	$('.lang-dropdown-item').click(function () {
+		document.cookie = "curr=" + $(this).data('curr') + "; " + 3306 + ";path=/";
+		location.reload();
 	});
 
-	$('.sort-links a').click(function (event) {
-		event.preventDefault();
-		$('.sort-links .active').removeClass('active');
-		$(this).addClass('active');
-	});
+	if ($('.js-tab-container-resp').length) {
+		$('.js-tab-container-resp').load($('.js-tab-container-resp').data('path'));
+	}
 
-	var sliderRecomend = new Swiper(".recommend-slider", {
-		slidesPerView: 5.5,
-		spaceBetween: 38,
-		loop: true,
-		pagination: {
-			el: ".recommend-pagination",
-			clickable: true,
-		},
-		navigation: {
-			nextEl: ".swiper-recommend-next",
-			prevEl: ".swiper-recommend-prev",
-		},
-		breakpoints: {
-			320: {
-				slidesPerView: 4,
-				spaceBetween: 16,
-				direction: 'vertical',
-				pagination: {
-					el: ".swiper-pagination",
-				},
-			},
-			768: {
-				slidesPerView: 3,
-				spaceBetween: 12
-			},
-			992: {
-				slidesPerView: 4,
-				spaceBetween: 25,
-			},
-			1200: {
-				slidesPerView: 5,
-				spaceBetween: 20
-			},
-			1400: {
-				slidesPerView: 5,
-				spaceBetween: 38
-			},
+	$('.js-search-page').click(function () {
+		if ($('.js-search-input').val().length > 0) {
+			location.href = $('.js-search-input').data('path') + '?search=' + encodeURIComponent($('.js-search-input').val());
 		}
 	});
 
-	if ($('.filter-price').length > 0) {
-		var keypressSlider = document.querySelector(".filter-price");
-		var input0 = document.querySelector(".input-with-keypress-0");
-		var input1 = document.querySelector(".input-with-keypress-1");
-		var inputs = [input0, input1];
-		var value1 = Number($(".input-with-keypress-0").val());
-		var value2 = Number($(".input-with-keypress-1").val());
+	$('.js-search-input').on('keypress', function (e) {
+		if (e.which == 13) {
+			location.href = $('.js-search-input').data('path') + '?search=' + encodeURIComponent($('.js-search-input').val());
+		}
+	});
 
-		noUiSlider.create(keypressSlider, {
-			start: [value1, value2],
-			connect: true,
-			step: 1,
-			range: {
-				min: [value1],
-				max: [value2]
-			},
-			format: {
-				from: function (value) {
-					return parseInt(value);
-				},
-				to: function (value) {
-					return parseInt(value);
-				}
+	$(".js-catalog-search").keyup(function () {
+		updateCatalogFilter()
+	});
+
+	$(".js-inpit-min").focusout(function () {
+		if (enterOrFocusout === 1) {
+			enterOrFocusout = 0;
+			return false;
+		}
+		minInput(this);
+	});
+
+	$(".js-inpit-min").keyup(function () {
+		if (event.keyCode == 13) {
+			minInput(this);
+			enterOrFocusout = 1;
+			return false;
+		}
+	});
+
+	$(".js-inpit-max").focusout(function () {
+		if (enterOrFocusout === 1) {
+			enterOrFocusout = 0;
+			return false;
+		}
+		maxInput(this);
+	});
+
+	$(".js-inpit-max").keyup(function () {
+		if (event.keyCode == 13) {
+			maxInput(this);
+			enterOrFocusout = 1;
+			return false;
+		}
+	});
+
+	function minInput(a) {
+		var val = window[parse]($(a).val());
+		var min = window[parse]($(".js-inpit-min").data('default'));
+		var max = window[parse]($(".js-inpit-max").data('default'));
+		var maxVal = window[parse]($(".js-inpit-max").val());
+		if (val < min) {
+			$(".js-inpit-min").val(min);
+			val = window[parse]($(a).val());
+		}
+		if (val > maxVal) {
+			$(".js-inpit-max").val(val);
+		}
+		if (min <= val && max >= val) {
+			updateCatalogFilter();
+		}
+	}
+
+	function maxInput(a) {
+		var val = window[parse]($(a).val());
+		var min = window[parse]($(".js-inpit-min").data('default'));
+		var max = window[parse]($(".js-inpit-max").data('default'));
+		var minVal = window[parse]($(".js-inpit-min").val());
+		if (val > max) {
+			$(".js-inpit-max").val(max);
+			val = window[parse]($(a).val());
+		}
+		if (val < minVal) {
+			$(".js-inpit-max").val(minVal);
+		}
+		if (min <= val && max >= val) {
+			updateCatalogFilter();
+		}
+	}
+
+	$(".js-inpit-min").keyup(function () {
+		if (event.keyCode == 13) {
+			minInput(this);
+			enterOrFocusout = 1;
+			return false;
+		}
+	});
+
+	$('.js-select-order').click(function () {
+		updateCatalogFilter();
+	});
+
+	$('.js-show-more').click(function () {
+		var page = $('.product-items').data('page') + 1;
+		var separator = $('.product-items').data('filter').indexOf('?') == -1 ? '?' : '&';
+		var path = $('.product-items').data('filter') + separator + 'page=' + page;
+		$.get(path, function (dados) {
+			$(".product-items").append(dados);
+			$("img.lazy").lazy({
+				effect: "fadeIn",
+				effectTime: 1000,
+				delay: 2000,
+			});
+		}).fail(function () {
+			$('.js-show-more').hide();
+		})
+		$('.product-items').data('page', page);
+	});
+
+	$('.js-section').change(function () {
+		updateCatalogFilter()
+	});
+
+	function updateCatalogFilter() {
+		var separator = $('.js-game-container').data('path').indexOf('?') == -1 ? '?' : '&';
+		var criterias = [];
+		if (($(".js-catalog-search").val() != undefined && $(".js-catalog-search").val() != '') || ($(".js-catalog-search-mob").val() != undefined && $(".js-catalog-search-mob").val() != '')) {
+			var name = $(".js-catalog-search").val() == '' ? $(".js-catalog-search-mob").val() : $(".js-catalog-search").val();
+			criterias.push("name=" + encodeURI(name));
+		}
+		if ($(".js-inpit-min").val() != undefined) {
+			var min = $(".js-inpit-min").val();
+			var minDefault = $(".js-inpit-min").data('default');
+			var max = $(".js-inpit-max").val();
+			var maxDefault = $(".js-inpit-max").data('default');
+			if (min != minDefault || max != maxDefault) {
+				criterias.push("curr=" + $(".js-inpit-min").data('curr'));
+				criterias.push("minprice=" + $(".js-inpit-min").val());
+				criterias.push("maxprice=" + $(".js-inpit-max").val());
+				console.log(criterias);
 			}
-		});
-
-		keypressSlider.noUiSlider.on("update", function (values, handle) {
-			inputs[handle].value = values[handle];
-
-			function setSliderHandle(i, value) {
-				var r = [null, null];
-				r[i] = value;
-				keypressSlider.noUiSlider.set(r);
-			}
-
-			inputs.forEach(function (input, handle) {
-				input.addEventListener("change", function () {
-					setSliderHandle(handle, this.value);
-				});
-
-				input.addEventListener("keydown", function (e) {
-					var values = keypressSlider.noUiSlider.get();
-					var value = Number(values[handle]);
-
-					var steps = keypressSlider.noUiSlider.steps();
-
-					var step = steps[handle];
-
-					var position;
-
-					// 13 is enter,
-					// 38 is key up,
-					// 40 is key down.
-					switch (e.which) {
-						case 13:
-							setSliderHandle(handle, this.value);
-							break;
-
-						case 38:
-							// Get step to go increase slider value (up)
-							position = step[1];
-
-							// false = no step is set
-							if (position === false) {
-								position = 1;
-							}
-
-							// null = edge of slider
-							if (position !== null) {
-								setSliderHandle(handle, value + position);
-							}
-
-							break;
-
-						case 40:
-							position = step[0];
-
-							if (position === false) {
-								position = 1;
-							}
-
-							if (position !== null) {
-								setSliderHandle(handle, value - position);
-							}
-
-							break;
-					}
-				});
+		}
+		if ($('.js-select-order.active').val() != undefined) {
+			criterias.push($('.js-select-order').val());
+		}
+		if ($('.js-section').val() != undefined) {
+			var sections = $('.js-section-input').map(function () {
+				return $(this).is(':checked') ? $(this).val() : false;
+			}).get();
+			sections.forEach(section => criterias.push("sections[]=" + section));
+			// criterias.push("sections=" + sections.join(','))
+		}
+		criterias = criterias.join('&');
+		var path = $('.js-game-container').data('path') + separator + criterias;
+		$('.js-game-container').data('filter', path);
+		$('.js-game-container').load(path, function () {
+			$("img.lazy").lazy({
+				effect: "fadeIn",
+				effectTime: 1000,
+				delay: 500,
 			});
 		});
 	}
 
-	$('.form-input[type="checkbox"]').click(function () {
-		if ($(this).is(':checked')) {
-			$(this).closest('.form-label').addClass('checked');
-			console.log('checked');
-		} else {
-			$(this).closest('.form-label').removeClass('checked');
-			console.log('not-checked');
-		}
+	$('.js-clean-filter').click(function () {
+		$(".js-inpit-min").val($(".js-inpit-min").data('default'));
+		$(".js-inpit-max").val($(".js-inpit-max").data('default'));
+		keypressSlider.noUiSlider.set([$(".js-inpit-min").data('default'), $(".js-inpit-max").data('default')]);
+		updateCatalogFilter();
 	});
 
-	$('.pagination-link').click(function (e) {
-		e.preventDefault();
-		$('.pagination-link.active').removeClass('active');
-		$(this).addClass('active');
-	});
-
-	if($('.filter-mob').length > 0) {
-		$('.filter-mob').click(function() {
-			$(this).toggleClass('active');
-		});
-	}
-
-	$('.close-filter').click(function(event) {
-		event.preventDefault();
-		$('.filter-mob.active').removeClass('active');
-	});
-
-	$(document).on('mouseup', function(e) {
-		let s = $('.filter-content');
-		if(!s.is(e.target) && s.has(e.target).length === 0) {
-			$('.filter-mob.active').removeClass('active');
-		}
-	});
-
-	$(".scroll-to").on("click", function (event) {
-        event.preventDefault();
-        var id  = $(this).attr('href'),
-            top = $(id).offset().top;
-        $('body,html').animate({scrollTop: top}, 1500);
-    });
-
-	var btn = $('.btn-to-top');
-
-	$(window).scroll(function () {
-        if ($(window).scrollTop() > 300) {
-            $('.btn-to-top').addClass('show');
-        } else {
-            $('.btn-to-top').removeClass('show');
-        }
-    });
-
-    $('.btn-to-top').on('click', function (e) {
-        e.preventDefault();
-        $('html, body').animate({scrollTop: 0}, '300');
-    });
-
-	$('.filter-item').click(function() {
-		$('.filter-item.active').removeClass('active');
-		$(this).addClass('active');
-	});
 });

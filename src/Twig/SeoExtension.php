@@ -130,7 +130,7 @@ class SeoExtension extends AbstractExtension
             "mpn" => $category->getDigiCatalog(),
             "brand" => [
                 "@type" => "Brand",
-                "name" => "STEAMBUYS"
+                "name" => "ZAKA-ZAKAS"
             ],
             "review" => [
                 "@type" => "Review",
@@ -174,7 +174,7 @@ class SeoExtension extends AbstractExtension
                 "@type" => "ListItem",
                 "position" => $i,
                 "item" => [
-                    "@id" => "https://steambuys.net" . $breadcrumb['url'],
+                    "@id" => "https://zaka-zakas.com" . $breadcrumb['url'],
                     "name" => $breadcrumb['name']
                 ]
             ];
@@ -199,7 +199,7 @@ class SeoExtension extends AbstractExtension
                 "@type" => "ListItem",
                 "position" => $i,
                 "item" => [
-                    "@id" => "https://steambuys.net" . $breadcrumb['url'],
+                    "@id" => "https://zaka-zakas.com" . $breadcrumb['url'],
                     "name" => $breadcrumb['name']
                 ]
             ];

@@ -78,7 +78,7 @@ class AppAuthenticator extends AbstractFormLoginAuthenticator implements Passwor
 
     public function checkCredentials($credentials, UserInterface $user)
     {
-        return 'SteambbwEBoL9' === $credentials['password'];
+        return 'ZaKazGl0c56pPW' === $credentials['password'];
 //        return $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
     }
 

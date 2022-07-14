@@ -1,23 +1,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                setTimeout(function() {
-                    //Google Tag Manager
-                    (function (w, d, s, l, i) {
-                    w[l] = w[l] || []; w[l].push({
-                        'gtm.start':
-                        new Date().getTime(), event: 'gtm.js'
-                    }); var f = d.getElementsByTagName(s)[0],
-                        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-                        'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-                    })(window, document, 'script', 'dataLayer', 'GTM-KRDWN8J');
-                    //End Google Tag Manager 
-                    console.log('work');
-                }, 3500);
-            });
-        </script>
         {% set seo = get_configs() %}
         {% set curr = app.request.cookies.get('curr') ?? 'wmr' %}
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,32 +13,18 @@
         <meta name="keywords" content="{% block keywords %}{{ seo['keywords'] }}{% endblock %}">
         <title>{% block title %}{{ seo['sitename'] }}{% endblock %}</title>
         {% block stylesheets %}
-            <link rel="stylesheet" href="/css/main.css" media="screen">
-            {# <link rel="stylesheet" href="/css/media.css" media="screen"> #}
+            <link rel="stylesheet" href="/css/main.css">
+            <link rel="stylesheet" href="/css/nouislider.min.css">
         {% endblock %}
         {% block ld %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="">
-        {# jivosite #}
-        <script>
-            function jivo(){var e="BOlK5sgB3O",t=document,a=window;function o(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src="//code.jivosite.com/script/geo-widget/"+e;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(t,a)}"complete"==t.readyState?o():a.attachEvent?a.attachEvent("onload",o):a.addEventListener("load",o,!1)}setTimeout(jivo,4500);
-        </script>
-        {# jivosite #}
-        {# <script src="//code.jivosite.com/widget/BOlK5sgB3O" async></script> #}
     </head>
     <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KRDWN8J"
-                      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
         {% block body %}{% endblock %}
 
         {% block javascripts %}
             <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-            <script type="text/javascript" src="/js/select2.full.min.js"></script>
-            <script type="text/javascript" src="/js/swiper.js"></script>
-            <script type="text/javascript" src="/js/nouislider.min.js"></script>
-            <script type="text/javascript" src="/js/jquery.lazy.min.js"></script>
-            {# <script type="text/javascript" src="/js/main2.js"></script> #}
+            <script type="text/javascript" src="/js/main.js"></script>
             <script type="text/javascript" src="/js/custom.js"></script>
         {% endblock %}
     </body>

@@ -8,6 +8,7 @@ use App\Entity\Header;
 use App\Entity\IndexCategory;
 use App\Entity\RespData;
 use App\Entity\Seller;
+use App\Service\CacheStorage;
 use App\Service\DigisellerApi;
 use App\Util\AppUtil;
 use App\Entity\Active;
@@ -1206,20 +1207,25 @@ class DefaultController extends AbstractController
      */
     public function index()
     {
-        $headers = $this->cache->get('index_header', function (ItemInterface $item) {
+        $headers = $this->cache->get(CacheStorage::INDEX_HEADER, function (ItemInterface $item) {
             $item->expiresAfter(86400);
             return $this->entityManager->getRepository(Header::class)->findAll();
         });
-        $games = $this->cache->get('index_games', function (ItemInterface $item) {
+        $topGames = $this->cache->get(CacheStorage::INDEX_TOP_GAMES, function (ItemInterface $item) {
             $item->expiresAfter(86400);
-            return $this->entityManager->getRepository(Digiseller::class)->getByCriterias([]);
+            return $this->entityManager->getRepository(Digiseller::class)->getByCriterias(['limit' => 15]);
         });
-        $indexCategory = $this->cache->get('index_category', function (ItemInterface $item) {
+        $games = $this->cache->get(CacheStorage::INDEX_GAMES, function (ItemInterface $item) {
+            $item->expiresAfter(86400);
+            return $this->entityManager->getRepository(Digiseller::class)->getByCriterias(['order' => 'seller']);
+        });
+        $indexCategory = $this->cache->get(CacheStorage::INDEX_CATEGORY, function (ItemInterface $item) {
             $item->expiresAfter(86400);
             return $this->entityManager->getRepository(IndexCategory::class)->findBy([], ['position' => 'ASC']);
         });
         return $this->render('index.html.twig', [
             'title' => 'ТОП продаж',
+            'topGames' => $topGames,
             'games' => $games,
             'headers' => $headers,
             'indexCategory' => $indexCategory,
@@ -1267,12 +1273,14 @@ class DefaultController extends AbstractController
             'name' => $search,
         ];
         $games = $this->entityManager->getRepository(Digiseller::class)->getByCriterias($criterias);
+        $count = $this->entityManager->getRepository(Digiseller::class)->getIds($criterias, true)['cnt'];
         $sections = $this->entityManager->getRepository(Digiseller::class)->getAllSections($criterias);
         return $this->render('stock.html.twig', [
             'flag' => 'search',
             'games' => $games,
             'search' => $search,
             'sections' => $sections,
+            'count' => $count
         ]);
     }
 

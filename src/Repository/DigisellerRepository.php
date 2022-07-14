@@ -171,7 +171,7 @@ class DigisellerRepository extends ServiceEntityRepository
 
         $order = 'sales';
         $orderAsc = 'DESC';
-        if (key_exists('order', $criterias) and array_search($criterias['order'], ['wmr', 'wmz', 'wme']) !== false) {
+        if (key_exists('order', $criterias) and array_search($criterias['order'], ['wmr', 'wmz', 'wme', 'seller']) !== false) {
             $order = $criterias['order'];
         }
 
@@ -180,13 +180,15 @@ class DigisellerRepository extends ServiceEntityRepository
         }
 
         if ($order == 'sales') {
-            $order = "sp.priority DESC, $order $orderAsc";
+            $order = "$order $orderAsc";
         } elseif (array_search($order == 'wmr', ['wmr', 'wmz', 'wme']) !== false) {
             if ($order == 'wmr') {
                 $order = "CONVERT($order, UNSIGNED) $orderAsc";
             } else {
                 $order = "$order $orderAsc";
             }
+        } elseif($order == 'seller'){
+            $order = 'sp.priority DESC';
         } else {
             $order = "$order $orderAsc, sp.priority DESC";
         }
