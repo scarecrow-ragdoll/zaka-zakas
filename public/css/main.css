@@ -4390,7 +4390,8 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
     margin: 0;
     height: 100%;
     width: 100%;
-    max-width: 110px
+    max-width: 110px;
+    min-height: auto;
   }
 }
 
