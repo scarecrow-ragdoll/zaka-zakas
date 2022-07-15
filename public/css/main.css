@@ -3403,15 +3403,12 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
 }
 
 .header-bot .left .header-popup-link a {
+  display: inline-block;
   color: #fff;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
   padding: 8px 24px;
-}
-
-.header-bot .left .header-popup-link a:hover {
-  background: rgba(137, 137, 245, 0.15)
 }
 
 .header-bot .left .header-popup-item {
