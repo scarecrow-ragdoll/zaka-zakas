@@ -4369,6 +4369,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
   border-radius: 32px;
   margin: -76px auto 32px auto;
   transition: all .5s;
+  max-height: 194px;
   min-height: 194px;
   width: 194px
 }
@@ -4586,7 +4587,8 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between
+  justify-content: space-between;
+  margin-top: auto;
 }
 
 @media (max-width: 767px) {
