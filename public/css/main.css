@@ -4241,7 +4241,6 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
   padding: 0 8px 16px 8px;
   margin: 0 19px 104px 19px;
   max-width: 226px;
-  max-height: 348px;
   width: calc(20% - 38px)
 }
 
