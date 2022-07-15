@@ -3397,7 +3397,8 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
   padding: 8px 24px
 }
 
-.header-bot .left .header-popup-link:hover {
+.header-bot .left .header-popup-link:hover,
+.header-bot .left .header-popup-item li:hover {
   background: rgba(137, 137, 245, 0.15);
 }
 
