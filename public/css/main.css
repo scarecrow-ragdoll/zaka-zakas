@@ -2873,6 +2873,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
 
 .swiper-wrap .swiper .product-item {
   margin: 0;
+  height: 100%;
   width: 100%
 }
 
