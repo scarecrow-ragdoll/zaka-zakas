@@ -4367,9 +4367,9 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
   display: flex;
   overflow: hidden;
   border-radius: 32px;
-  margin: -56px auto 32px auto;
+  margin: -76px auto 32px auto;
   transition: all .5s;
-  height: 194px;
+  min-height: 194px;
   width: 194px
 }
 
@@ -4414,7 +4414,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
 
 .product-item-cat {
   position: absolute;
-  top: 122px;
+  top: 102px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -4442,6 +4442,9 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
 }
 
 .product-item-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
   color: #fff;
   padding: 0 8px
 }
@@ -4586,7 +4589,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
   justify-content: space-between
 }
 
-@media (max-height: 767px) {
+@media (max-width: 767px) {
   .product-item-btns {
     align-items: flex-end
   }
