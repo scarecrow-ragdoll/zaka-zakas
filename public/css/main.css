@@ -3409,6 +3409,8 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
   font-size: 14px;
   line-height: 17px;
   padding: 8px 24px;
+  height: 100%;
+  width: 100%;
 }
 
 .header-bot .left .header-popup-item {
