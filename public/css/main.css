@@ -2697,6 +2697,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
   justify-content: initial;
   border-radius: 12px;
   color: #7D87B0;
+  cursor: pointer;
   font-weight: 700;
   font-size: 16px;
   line-height: 19px;
@@ -3394,7 +3395,6 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 8px 24px
 }
 
 .header-bot .left .header-popup-link:hover,
@@ -3406,7 +3406,8 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
   color: #fff;
   font-weight: 400;
   font-size: 14px;
-  line-height: 17px
+  line-height: 17px;
+  padding: 8px 24px;
 }
 
 .header-bot .left .header-popup-link a:hover {
