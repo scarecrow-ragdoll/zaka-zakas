@@ -6235,6 +6235,8 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
 }
 
 .product-header-img {
+  border-radius: 24px;
+  overflow: hidden;
   margin-right: 40px;
   max-height: 290px;
   max-width: 290px;
@@ -7236,6 +7238,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
   overflow: hidden;
 }
 
+.product-header-img img,
 .page-category .product-header-img img {
   aspect-ratio: 1 /1;
   width: 290px;

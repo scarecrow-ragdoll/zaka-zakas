@@ -80,7 +80,7 @@
                                         {% if discount.percent > 0 %}
                                             <div class="old">{{ discount.price }} {{ get_curr_symbol(curr) }}</div>
                                         {% endif %}
-                                        <div class="price">{{ game.price(curr) }} {{ get_curr_symbol(curr) }}</div>
+                                        <div class="new">{{ game.price(curr) }} {{ get_curr_symbol(curr) }}</div>
                                     </div>
                                     <a class="btn btn-gradient" onclick="document.getElementById('buy_form').submit();">
                                         <svg width="24" height="25" viewbox="0 0 24 25" fill="none"
@@ -193,7 +193,7 @@
                         {% if discount.percent > 0 %}
                             <div class="old">{{ discount.price }} {{ get_curr_symbol(curr) }}</div>
                         {% endif %}
-                        <div class="price">{{ game.price(curr) }} {{ get_curr_symbol(curr) }}</div>
+                        <div class="new">{{ game.price(curr) }} {{ get_curr_symbol(curr) }}</div>
                     </div>
                     <a class="btn btn-gradient" onclick="document.getElementById('buy_form').submit();">
                         <svg width="24" height="25" viewbox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -206,7 +206,7 @@
                         </svg>
                         Купить</a>
                     <div class="form-group-checkbox">
-                        <label class="form-label">Согласен с <a href="#">«Правилами покупки товаров»</a>
+                        <label class="form-label">Ознакомлен с <a href="#">описанием товара</a>
                             <input class="form-input" type="checkbox" checked="checked"><span class="checkmark"></span>
                         </label>
                     </div>

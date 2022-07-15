@@ -68,7 +68,7 @@
                                     <div class="old">{{ discount.price }} {{ get_curr_symbol(curr) }}</div>
                                 {% endif %}
 
-                                <div class="price">{{ topGame.price(curr) }} {{ get_curr_symbol(curr) }}</div>
+                                <div class="new">{{ topGame.price(curr) }} {{ get_curr_symbol(curr) }}</div>
                             </div>
                         </div>
                         <form id="buy_form" action="https://www.oplata.info/asp2/pay_gm.asp" method="get"
@@ -91,7 +91,7 @@
                                 Купить</a>
                         </div>
                         <div class="form-group-checkbox">
-                            <label class="form-label">Согласен с <a href="#">«Правилами покупки товаров»</a>
+                            <label class="form-label">Ознакомлен с <a href="#">описанием товара</a>
                                 <input class="form-input" type="checkbox" checked="checked">
                                 <span class="checkmark"></span>
                             </label>
