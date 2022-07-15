@@ -2042,7 +2042,7 @@ hr {
   display: flex;
   color: #fff;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 120%;
   padding-left: 31px;
   height: 16px;
@@ -2194,7 +2194,7 @@ hr {
 .search-content .sidebar-title {
   position: relative;
   font-weight: 700;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 120%;
   text-transform: uppercase;
   padding: 16px 24px;
@@ -2304,7 +2304,7 @@ hr {
   border: 2px solid rgba(137, 137, 245, 0.12);
   border-radius: 8px;
   color: #7D87B0;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 14px;
   padding: 14px 16px;
   max-height: 42px;
@@ -2725,7 +2725,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
 
 @media (max-width: 660px) {
   .btn-show-more {
-    font-size: 12px;
+    font-size: 14px;
     line-height: 14px;
     max-height: 44px;
     max-width: 152px
@@ -3161,17 +3161,17 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
 
 @media (max-width: 768px) {
   .header-search .input-text::-moz-placeholder {
-    font-size: 12px;
+    font-size: 14px;
     line-height: 14px
   }
 
   .header-search .input-text:-ms-input-placeholder {
-    font-size: 12px;
+    font-size: 14px;
     line-height: 14px
   }
 
   .header-search .input-text::placeholder {
-    font-size: 12px;
+    font-size: 14px;
     line-height: 14px
   }
 }
@@ -3703,7 +3703,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
 
 .lang-dropdown-item .text {
   font-weight: 400;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 14px;
   height: 14px;
   width: 16px
@@ -4430,7 +4430,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
   border-radius: 99px;
   color: #fff;
   font-weight: 500;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 100%;
   min-height: 32px;
   padding: 0 21px
@@ -4502,7 +4502,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
 
 @media (max-width: 767px) {
   .product-item-content .cost-wrap .old {
-    font-size: 12px;
+    font-size: 14px;
     line-height: 14px
   }
 }
@@ -4575,7 +4575,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
   display: flex;
   color: #7D87B0;
   font-weight: 500;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 100%;
   margin: 14px 0;
 }
@@ -5446,7 +5446,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
   border-radius: 4px;
   color: #fff;
   font-weight: 700;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 14px;
   text-transform: uppercase;
   height: 22px;
@@ -6590,7 +6590,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
 
 @media (max-width: 767px) {
   .reviews-item .info {
-    font-size: 12px;
+    font-size: 14px;
     line-height: 120%
   }
 }
@@ -6993,7 +6993,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
 .seller-items-header {
   display: flex;
   align-items: center;
-  margin-bottom: 80px
+  margin-bottom: 64px
 }
 
 @media (max-width: 1290px) {
@@ -7249,7 +7249,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
   left: 50%;
   transform: translateX(-50%);
   border-radius: 99px;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 100%;
   padding: 10px 21px;
   white-space: nowrap
@@ -7510,7 +7510,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
   align-items: center;
   color: #7D87B0;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 120%;
   padding: 9px 24px;
   margin: 0 -24px
