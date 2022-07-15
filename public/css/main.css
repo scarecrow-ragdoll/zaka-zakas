@@ -2905,14 +2905,14 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
 .swiper-wrap .swiper-btn-wrap .swiper-button-prev:hover,
 .swiper-wrap .swiper-btn-wrap .swiper-button-next:hover {
   background: linear-gradient(90deg, #7D60F3 0%, #6062F2 100%);
-  background-size: contain;
 }
 
 .swiper-wrap .swiper-btn-wrap .swiper-button-prev:hover:before,
 .swiper-wrap .swiper-btn-wrap .swiper-button-prev:hover:after,
 .swiper-wrap .swiper-btn-wrap .swiper-button-next:hover:before,
 .swiper-wrap .swiper-btn-wrap .swiper-button-next:hover:after {
-  background: url(/img/arrow-right-white.svg)
+  background: url(/img/arrow-right-white.svg);
+  background-size: contain;
 }
 
 .swiper-wrap .swiper-btn-wrap .swiper-button-prev:focus,
