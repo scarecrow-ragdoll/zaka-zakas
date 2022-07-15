@@ -5451,6 +5451,10 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
   min-width: 22px
 }
 
+.page-category .letters-item:hover {
+  background: rgba(137, 137, 245, 0.15);
+}
+
 .page-category .letters-item.active {
   background: linear-gradient(90deg, #8268FE 0%, #6548FB 100%);
   border-radius: 4px
