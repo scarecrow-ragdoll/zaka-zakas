@@ -4384,6 +4384,13 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
   transition: all .5s
 }
 
+@media (max-width: 660px) {
+  .product-item-img img {
+    aspect-ratio: 1 / 1;
+    width: 110px;
+  }
+}
+
 @media (max-width: 767px) {
   .product-item-img {
     border-radius: 12px;
@@ -4391,13 +4398,13 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
     height: 100%;
     width: 100%;
     max-width: 110px;
-    min-height: auto;
   }
 }
 
 @media (max-width: 660px) {
   .product-item-img {
-    max-width: 100%;
+    max-width: 110px;
+    min-height: auto;
   }
 }
 
