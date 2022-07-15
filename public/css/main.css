@@ -2369,6 +2369,33 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
   right: 0
 }
 
+.noUi-handle:after, .noUi-handle:before {
+  content: none;
+}
+
+html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
+  right: -15px;
+}
+
+.noUi-horizontal .noUi-handle {
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  height: 16px;
+  width: 16px;
+  background: #8989F5;
+  border: none;
+  box-shadow: none;
+}
+
+.noUi-horizontal {
+  background: #7D87B0;
+  box-shadow: none;
+  border: none;
+  height: 4px;
+}
+
 .pagination {
   width: 100%
 }
