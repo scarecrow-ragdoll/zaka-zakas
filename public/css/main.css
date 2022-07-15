@@ -6811,7 +6811,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
   display: flex;
   align-items: center;
   color: #fff;
-  margin: 0 83.5px
+  margin: 0 80px
 }
 
 @media (max-width: 1310px) {
@@ -7036,7 +7036,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
 }
 
 .seller-items-wrap {
-  padding: 108px 0
+  padding: 48px 0
 }
 
 @media (max-width: 767px) {
@@ -7047,7 +7047,8 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
 
 .seller-items-wrap .title-wrap {
   max-width: 420px;
-  width: 100%
+  max-width: 445px;
+  width: 100%;
 }
 
 .mob-sort {
@@ -7083,7 +7084,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
 .seller-products-sort {
   display: flex;
   align-items: center;
-  margin-left: 142px;
+  margin-left: 117px;
   max-width: 445px;
   width: 100%
 }
