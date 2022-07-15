@@ -2341,11 +2341,12 @@ hr {
   left: 0;
   transform: translateY(-50%);
   border-radius: 50%;
-  height: 16px;
-  width: 16px;
   background: #8989F5;
   border: none;
-  box-shadow: none
+  box-shadow: none;
+  cursor: pointer;
+  height: 20px;
+  width: 20px;
 }
 
 .filter-price .noUi-connect {
@@ -3352,6 +3353,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
 
 .header-bot .left .btn-gradient {
   position: relative;
+  cursor: pointer;
   z-index: 3
 }
 
@@ -7468,7 +7470,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
 }
 
 .search-result .product-item {
-  margin: 40px 7.5px;
+  margin: 55px 7.5px;
   width: calc(25% - 15px)
 }
 
@@ -7483,6 +7485,10 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
     margin: 0 0 16px 0;
     width: 100%
   }
+}
+
+.search-result .sort-links {
+  display: flex;
 }
 
 .filter-items {
