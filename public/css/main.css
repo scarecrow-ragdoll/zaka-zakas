@@ -2738,7 +2738,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
   position: absolute;
   display: block;
   top: 50%;
-  right: -23px;
+  right: -32px;
   transform: translateY(-50%);
   background: url(/img/caret-down.svg) no-repeat 50% 50%;
   height: 24px;
@@ -2868,7 +2868,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
 .swiper-wrap .swiper {
   overflow: hidden;
   padding-top: 56px;
-  padding-top: 72px
+  padding-top: 92px
 }
 
 .swiper-wrap .swiper .product-item {
@@ -3395,6 +3395,10 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
   align-items: center;
   justify-content: space-between;
   padding: 8px 24px
+}
+
+.header-bot .left .header-popup-link:hover {
+  background: rgba(137, 137, 245, 0.15);
 }
 
 .header-bot .left .header-popup-link a {
@@ -4078,7 +4082,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
 
 .home-cat-links {
   display: flex;
-  margin: 48px -20px 108px -20px;
+  margin: 48px -20px 72px -20px;
   overflow-x: auto
 }
 
@@ -4544,7 +4548,8 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
 .product-item-title {
   font-weight: 500;
   font-size: 16px;
-  line-height: 150%
+  line-height: 150%;
+  min-height: 72px;
 }
 
 @media (max-width: 767px) {
@@ -4569,7 +4574,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
   font-weight: 500;
   font-size: 12px;
   line-height: 100%;
-  margin: 14px 0 40px 0
+  margin: 14px 0;
 }
 
 @media (max-width: 767px) {
@@ -4616,7 +4621,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
   background-size: cover;
   background-repeat: no-repeat;
   padding: 48px 0 44px 0;
-  margin: 108px 0 80px 0
+  margin: 108px 0 0 0
 }
 
 @media (max-width: 767px) {
