@@ -4380,13 +4380,19 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
   width: 194px
 }
 
+@media (max-width: 767px) {
+  .product-item-img img {
+    aspect-ratio: 1 / 1;
+    width: 194px;
+  }
+}
+
 .product-item-img img {
-  transition: all .5s
+
 }
 
 @media (max-width: 660px) {
   .product-item-img img {
-    aspect-ratio: 1 / 1;
     width: 110px;
   }
 }
@@ -4397,7 +4403,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
     margin: 0;
     height: 100%;
     width: 100%;
-    max-width: 110px;
+    max-width: 194px;
   }
 }
 
@@ -4568,14 +4574,8 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
     font-weight: 400;
     font-size: 13px;
     line-height: 15px;
-    padding-right: 40px;
-    width: 147px
-  }
-}
-
-@media (max-width: 660px) {
-  .product-item-title {
-    padding-right: 0
+    padding-right: 42px;
+    width: auto;
   }
 }
 
