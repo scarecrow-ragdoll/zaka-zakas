@@ -3432,7 +3432,6 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
 .header-bot .left .header-popup-item li {
   display: flex;
   align-items: center;
-  padding: 8px 24px;
   min-width: 253px
 }
 
@@ -5852,7 +5851,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
 
 .page-product .block-productation {
   padding-top: 108px;
-  padding-bottom: 140px
+  padding-bottom: 72px
 }
 
 @media (max-width: 1200px) {
@@ -5870,7 +5869,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
 }
 
 .page-product .block-productation h2 {
-  margin-bottom: 88px
+  margin-bottom: 48px
 }
 
 @media (max-width: 1200px) {
