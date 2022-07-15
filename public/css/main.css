@@ -4396,7 +4396,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
 
 @media (max-width: 660px) {
   .product-item-img {
-    max-width: 68px
+    max-width: 100%;
   }
 }
 
