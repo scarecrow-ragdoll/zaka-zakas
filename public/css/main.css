@@ -7049,6 +7049,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
   max-width: 420px;
   max-width: 445px;
   width: 100%;
+  white-space: nowrap;  
 }
 
 .mob-sort {
