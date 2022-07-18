@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
-{% block title %}Товары продавца {{ seller.name }} на СТИМБАЙ{% endblock %}
-{% block description %}Покупайте у продавца {{ seller.name }} на официальном сайте STEAMBUY COM!! Более {{ count }} товаров с гарантией!{% endblock %}
+{% block title %}Все товары продавца {{ seller.name }} на Zaka-zaka{% endblock %}
+{% block description %}Выбирайте среди {{ count }} товаров продавца {{ seller.name }} на официальном сайте Zaka-zaka com! Цены от {{ get_min_price_seller(seller.sellerId) }} руб!{% endblock %}
 {% block body %}
     {% include 'common/_header.html.twig' %}
     <div class="page page-seller">

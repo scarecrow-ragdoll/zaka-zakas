@@ -19,7 +19,7 @@
             </div>
             <div class="right">
                 <div class="product-header-content-left">
-                    <h1 class="product-header-title">{{ topGame.title }}</h1>
+                    <h1>{{ category.title }} в магазине Zaka-zaka от {{ get_min_price(category)|number_format }} руб. на zaka-zakas</h1>
                     <div class="product-header-desc">{{ topGame.title }}</div>
                     {% if discount.percent > 0 %}
                         <div class="game-timer">

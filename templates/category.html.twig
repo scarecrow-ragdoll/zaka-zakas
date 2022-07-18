@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
-{% block title %}{{ get_category_title(category) }} купить STEAMBUY от {{ get_min_price(category)|number_format }} руб.{% endblock %}
-{% block description %}Покупайте {{ category.titleSeo }} на официальном сайте STEAMBUY COM! Цены от {{ get_min_price(category)|number_format }} руб. Мы принимаем все банковские карты! Моментальная доставка и гарантия! Более {{ count_of_category(category) }} товаров!{% endblock %}
+{% block title %}{{ category.title }} в магазине Zaka-zaka от {{ get_min_price(category)|number_format }} руб.{% endblock %}
+{% block description %}Покупайте {{ category.titleSeo }} на сайте магазина Zaka-zaka com по цене от {{ get_min_price(category)|number_format }} руб. Мгновенная доставка товара на почту!{% endblock %}
 {% block keywords %}{{ category.seoKeywords }}{% endblock %}
 {% block body %}
     {% include 'common/_header.html.twig' %}

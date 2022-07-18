@@ -107,6 +107,34 @@ class DigisellerRepository extends ServiceEntityRepository
         });
     }
 
+    public function getMinPriceSeller($seller, $curr = 'wmr'): string
+    {
+        return $this->cache->get($seller . '_seller_min_price_' . $curr, function (ItemInterface $item) use ($seller, $curr) {
+            $item->expiresAfter(86400);
+
+            $where = ['wmr is not null and wmr <> 0 and available > 0 and sales > 0'];
+            $where[] = "seller = " . $seller;
+            $where = implode(' AND ', $where);
+            $sql = "SELECT $curr
+                FROM digiseller
+                WHERE $where
+                ORDER BY CONVERT($curr, UNSIGNED) LIMIT 1";
+            $result = $this->executeSql($sql);
+            if (key_exists(0, $result)) {
+                return $result[0][$curr];
+            } else {
+                $where = str_replace('and sales > 0', '', $where);
+                $sql = "SELECT d.$curr
+                FROM digiseller d
+                LEFT JOIN seller_priority sp ON sp.seller = d.seller
+                WHERE $where
+                ORDER BY sp.priority DESC LIMIT 0, 1";
+                $result = $this->executeSql($sql);
+                return key_exists(0, $result) ? $result[0][$curr] : 5;
+            }
+        });
+    }
+
     public
     function getIds(array $criterias, bool $isCount = false): array
     {
@@ -293,7 +321,7 @@ class DigisellerRepository extends ServiceEntityRepository
 
     public function platiruSales()
     {
-        $this->executeSqlNoFetch("UPDATE digiseller SET sales = 1 where seller = 0 and sales > 0");
+        $this->executeSqlNoFetch("UPDATE digiseller SET sales = 0 where seller = 0 and sales > 0");
     }
 
     function clean($string): string

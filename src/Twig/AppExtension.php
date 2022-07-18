@@ -72,7 +72,6 @@ class AppExtension extends AbstractExtension
             new TwigFunction('get_max_price', [$this, 'getMaxPrice']),
             new TwigFunction('get_static_meta', [$this, 'getStaticMeta']),
             new TwigFunction('get_all_games_meta', [$this, 'getAllGamesMeta']),
-            new TwigFunction('get_game_title', [$this, 'getGameTitle']),
             new TwigFunction('get_sellers', [$this, 'getSellers']),
             new TwigFunction('get_rand_top_game', [$this, 'getRandTopGame']),
             new TwigFunction('get_header_price_by_url', [$this, 'getHeaderPriceByUrl']),
@@ -95,15 +94,6 @@ class AppExtension extends AbstractExtension
             $item->expiresAfter(86400);
             return $this->entityManager->getRepository(Digiseller::class)->getIds(['category' => $category->getDigiCatalog()], true)['cnt'];
         });
-    }
-
-    public function getGameTitle(Digiseller $game)
-    {
-        $title = "Купить на СТИМБАЙ " . $game->getTitle() . " цена " . number_format($game->getWmr()) . " руб.";
-        if (strlen($title) > 60) {
-            $title = "Купить на СТИМБАЙ " . $game->getTitle();
-        }
-        return $title;
     }
 
 

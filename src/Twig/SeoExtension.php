@@ -40,6 +40,8 @@ class SeoExtension extends AbstractExtension
             new TwigFunction('get_catalog_bredcrumbs', [$this, 'getCatalogBreadcrumbs']),
             new TwigFunction('get_game_bredcrumbs', [$this, 'getGameBreadcrumbs']),
             new TwigFunction('get_slug', [$this, 'getSlug']),
+            new TwigFunction('get_game_title', [$this, 'getGameTitle']),
+            new TwigFunction('get_min_price_seller', [$this, 'getMinPriceSeller']),
         ];
     }
 
@@ -55,6 +57,11 @@ class SeoExtension extends AbstractExtension
         if ($length >= 25)
             $length = round($length / 25);
         return 95 - $length;
+    }
+
+    public function getMinPriceSeller($seller)
+    {
+        return number_format($this->entityManager->getRepository(Digiseller::class)->getMinPriceSeller($seller), 2);
     }
 
     public function getSeoDiscountCategory(GgselCategory $category)
@@ -207,6 +214,15 @@ class SeoExtension extends AbstractExtension
         }
 
         return $result;
+    }
+
+    public function getGameTitle(Digiseller $game)
+    {
+        $title = "Купить на Zaka-zaka " . $game->getTitle() . " по цене " . number_format($game->getWmr()) . " руб.";
+        if (strlen($title) > 60) {
+            $title = "Купить на Zaka-zaka " . $game->getTitle();
+        }
+        return $title;
     }
 
     public function getCatalogBreadcrumbs(GgselCategory $ggselCategory, $isUrl = false): array
