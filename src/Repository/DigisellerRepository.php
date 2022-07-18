@@ -321,7 +321,7 @@ class DigisellerRepository extends ServiceEntityRepository
 
     public function platiruSales()
     {
-        $this->executeSqlNoFetch("UPDATE digiseller SET sales = 0 where seller = 0 and sales > 0");
+        $this->executeSqlNoFetch("DELETE FROM digiseller WHERE seller = 0");
     }
 
     function clean($string): string
