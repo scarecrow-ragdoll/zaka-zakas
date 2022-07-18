@@ -84,7 +84,7 @@ class AppExtension extends AbstractExtension
     {
         return $this->cache->get('all-games-count', function (ItemInterface $item) {
             $item->expiresAfter(86400);
-            return $this->entityManager->getRepository(Digiseller::class)->executeSql("SELECT count(id) count from digiseller")[0]['count'];
+            return $this->entityManager->getRepository(Digiseller::class)->executeSql("SELECT count(id) count from digiseller where sales > 0")[0]['count'];
         });
     }
 
