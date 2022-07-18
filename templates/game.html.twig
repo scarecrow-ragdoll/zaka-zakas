@@ -106,17 +106,17 @@
                                     </div>
                                 </div>
                                 {% if seller %}
-                                <a class="link-seller" href="{{ path('seller', {'seller':seller.sellerId}) }}">
-                                    <div class="link-seller-top">Продавец</div>
-                                    <div class="link-seller-bot">
-                                        <svg width="24" height="24" viewbox="0 0 24 24" fill="none"
-                                             xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M7.5 6.5C7.5 8.981 9.519 11 12 11C14.481 11 16.5 8.981 16.5 6.5C16.5 4.019 14.481 2 12 2C9.519 2 7.5 4.019 7.5 6.5ZM20 21H21V20C21 16.141 17.859 13 14 13H10C6.14 13 3 16.141 3 20V21H20Z"
-                                                  fill="#8989F5"></path>
-                                        </svg>
-                                        <span>{{ seller.name }}</span>
-                                    </div>
-                                </a>
+                                    <a class="link-seller" href="{{ path('seller', {'seller':seller.sellerId}) }}">
+                                        <div class="link-seller-top">Продавец</div>
+                                        <div class="link-seller-bot">
+                                            <svg width="24" height="24" viewbox="0 0 24 24" fill="none"
+                                                 xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M7.5 6.5C7.5 8.981 9.519 11 12 11C14.481 11 16.5 8.981 16.5 6.5C16.5 4.019 14.481 2 12 2C9.519 2 7.5 4.019 7.5 6.5ZM20 21H21V20C21 16.141 17.859 13 14 13H10C6.14 13 3 16.141 3 20V21H20Z"
+                                                      fill="#8989F5"></path>
+                                            </svg>
+                                            <span>{{ seller.name }}</span>
+                                        </div>
+                                    </a>
                                 {% endif %}
                             </div>
                         </div>
@@ -171,16 +171,16 @@
                     </div>
                 </div>
                 <aside class="sidebar">
-                        <div class="saller-rating">
-                            <div class="saller-rating-wrap">
-                                <div class="saller-rating-items">
-                                    <div class="star-rating"><span style="width: {{ game.rating }}%"></span></div>
-                                </div>
-                                <div class="rating-title">
-                                    <div class="percent">{{ game.rating }}%</div>
-                                </div>
+                    <div class="saller-rating">
+                        <div class="saller-rating-wrap">
+                            <div class="saller-rating-items">
+                                <div class="star-rating"><span style="width: {{ game.rating }}%"></span></div>
+                            </div>
+                            <div class="rating-title">
+                                <div class="percent">{{ game.rating }}%</div>
                             </div>
                         </div>
+                    </div>
                     {% if seller %}
                         <a class="link-seller" href="{{ path('seller', {'seller':seller.sellerId}) }}">
                             <div class="link-seller-top">Продавец</div>
@@ -200,7 +200,7 @@
                         {% endif %}
                         <div class="new">{{ game.price(curr) }} {{ get_curr_symbol(curr) }}</div>
                     </div>
-                    <a class="btn btn-gradient" onclick="document.getElementById('buy_form').submit();">
+                    <a class="btn btn-gradient" onclick="buyForm()">
                         <svg width="24" height="25" viewbox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M21.822 7.931C21.635 7.661 21.328 7.5 21 7.5H7.333L6.179 4.73C5.867 3.982 5.143 3.5 4.333 3.5H2V5.5H4.333L9.077 16.885C9.232 17.257 9.596 17.5 10 17.5H18C18.417 17.5 18.79 17.241 18.937 16.852L21.937 8.852C22.052 8.544 22.009 8.2 21.822 7.931ZM17.307 15.5H10.667L8.167 9.5H19.557L17.307 15.5Z"
                                   fill="#fff"></path>
@@ -212,7 +212,8 @@
                         Купить</a>
                     <div class="form-group-checkbox">
                         <label class="form-label">Ознакомлен с <a href="#">описанием товара</a>
-                            <input class="form-input" type="checkbox" checked="checked"><span class="checkmark"></span>
+                            <input class="form-input js-accept-form" type="checkbox" checked="checked"><span
+                                    class="checkmark"></span>
                         </label>
                     </div>
                     <div class="instant-conversion">
@@ -287,12 +288,19 @@
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
-    {# <script src="/js/slick.min.js"></script> #}
+    <script>
+        function buyForm() {
+            if ($('.js-accept-form').prop('checked')) {
+                document.getElementById('buy_form').submit();
+            }
+        }
+    </script>
 {% endblock %}
 {% block ld %}
     <script type="application/ld+json">
         {{ get_ld_product(game)|json_encode()|raw }}
         {{ get_ld_product_breadcrumb(game)|json_encode()|raw }}
+
 
 
 
