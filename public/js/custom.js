@@ -67,6 +67,10 @@ $(document).ready(function () {
 		}
 	});
 
+	$('.js-section').change(function () {
+		updateCatalogFilter()
+	});
+
 	function minInput(a) {
 		var val = window[parse]($(a).val());
 		var min = window[parse]($(".js-inpit-min").data('default'));

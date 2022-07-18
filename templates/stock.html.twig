@@ -64,8 +64,8 @@
                                         <div class="form-group-checkbox">
                                             {% for section in sections %}
                                                 {% if section.section %}
-                                                    <label class="form-label">{{ section.section }}
-                                                        <input class="form-input js-section-input" type="checkbox"
+                                                    <label class="form-label js-section">{{ section.section }}
+                                                        <input class="form-input js-section-input" type="checkbox" value="{{ section.section }}"
                                                                checked><span
                                                                 class="checkmark"></span>
                                                     </label>
