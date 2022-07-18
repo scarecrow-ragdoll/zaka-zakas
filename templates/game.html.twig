@@ -97,14 +97,15 @@
                                 <div class="saller-rating">
                                     <div class="saller-rating-wrap">
                                         <div class="saller-rating-items">
-                                            <div class="star-rating"><span style="width: {{ seller.rating }}%"></span>
+                                            <div class="star-rating"><span style="width: {{ game.rating }}%"></span>
                                             </div>
                                         </div>
                                         <div class="rating-title">
-                                            <div class="percent">{{ seller.rating }}%</div>
+                                            <div class="percent">{{ game.rating }}%</div>
                                         </div>
                                     </div>
                                 </div>
+                                {% if seller %}
                                 <a class="link-seller" href="{{ path('seller', {'seller':seller.sellerId}) }}">
                                     <div class="link-seller-top">Продавец</div>
                                     <div class="link-seller-bot">
@@ -116,6 +117,7 @@
                                         <span>{{ seller.name }}</span>
                                     </div>
                                 </a>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
@@ -169,27 +171,29 @@
                     </div>
                 </div>
                 <aside class="sidebar">
-                    <div class="saller-rating">
-                        <div class="saller-rating-wrap">
-                            <div class="saller-rating-items">
-                                <div class="star-rating"><span style="width: {{ seller.rating }}%"></span></div>
-                            </div>
-                            <div class="rating-title">
-                                <div class="percent">{{ seller.rating }}%</div>
+                        <div class="saller-rating">
+                            <div class="saller-rating-wrap">
+                                <div class="saller-rating-items">
+                                    <div class="star-rating"><span style="width: {{ game.rating }}%"></span></div>
+                                </div>
+                                <div class="rating-title">
+                                    <div class="percent">{{ game.rating }}%</div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <a class="link-seller" href="{{ path('seller', {'seller':seller.sellerId}) }}">
-                        <div class="link-seller-top">Продавец</div>
-                        <div class="link-seller-bot">
-                            <svg width="24" height="24" viewbox="0 0 24 24" fill="none"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <path d="M7.5 6.5C7.5 8.981 9.519 11 12 11C14.481 11 16.5 8.981 16.5 6.5C16.5 4.019 14.481 2 12 2C9.519 2 7.5 4.019 7.5 6.5ZM20 21H21V20C21 16.141 17.859 13 14 13H10C6.14 13 3 16.141 3 20V21H20Z"
-                                      fill="#8989F5"></path>
-                            </svg>
-                            <span>{{ seller.name }}</span>
-                        </div>
-                    </a>
+                    {% if seller %}
+                        <a class="link-seller" href="{{ path('seller', {'seller':seller.sellerId}) }}">
+                            <div class="link-seller-top">Продавец</div>
+                            <div class="link-seller-bot">
+                                <svg width="24" height="24" viewbox="0 0 24 24" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M7.5 6.5C7.5 8.981 9.519 11 12 11C14.481 11 16.5 8.981 16.5 6.5C16.5 4.019 14.481 2 12 2C9.519 2 7.5 4.019 7.5 6.5ZM20 21H21V20C21 16.141 17.859 13 14 13H10C6.14 13 3 16.141 3 20V21H20Z"
+                                          fill="#8989F5"></path>
+                                </svg>
+                                <span>{{ seller.name }}</span>
+                            </div>
+                        </a>
+                    {% endif %}
                     <div class="cost-wrap">
                         {% if discount.percent > 0 %}
                             <div class="old">{{ discount.price }} {{ get_curr_symbol(curr) }}</div>
@@ -289,6 +293,7 @@
     <script type="application/ld+json">
         {{ get_ld_product(game)|json_encode()|raw }}
         {{ get_ld_product_breadcrumb(game)|json_encode()|raw }}
+
 
 
 
