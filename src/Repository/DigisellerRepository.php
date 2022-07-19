@@ -228,7 +228,16 @@ class DigisellerRepository extends ServiceEntityRepository
                 FROM digiseller d
                 LEFT JOIN seller_priority sp ON sp.seller = d.seller
                 WHERE $where";
-            return $this->executeSql($sql, $params)[0];
+            $result = $this->executeSql($sql, $params)[0];
+            if($result['cnt'] == 0) {
+                $where = str_replace('and sales > 0', '', $where);
+                $sql = "SELECT COUNT(d.id) as cnt 
+                FROM digiseller d
+                LEFT JOIN seller_priority sp ON sp.seller = d.seller
+                WHERE $where";
+                $result = $this->executeSql($sql, $params)[0];
+            }
+            return $result;
         } else {
             $sql = "SELECT d.id
                 FROM digiseller d
