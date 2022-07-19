@@ -113,7 +113,7 @@
                              data-page="{{ page }}">
                             {% include 'common/_all_games.html.twig' %}
                         </div>
-                        {% if games|length > 0 %}
+                        {% if games|length == 12 %}
                             <div class="pagination js-pagination" data-path="{{ path('pagination') }}">
                                 {% include 'common/_pagination.html.twig' %}
                             </div>
