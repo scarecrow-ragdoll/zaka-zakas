@@ -45,7 +45,8 @@
                             <div class="header-search">
                                 <form>
                                     <input class="btn-search" type="button" value="">
-                                    <input class="input-text js-catalog-search" type="text" placeholder="Поиск по товарам">
+                                    <input class="input-text js-catalog-search" type="text"
+                                           placeholder="Поиск по товарам">
                                     <div class="line-bot"></div>
                                 </form>
                             </div>
@@ -121,55 +122,16 @@
                         </div>
                     </div>
                     {% set path = path('filter', {category:category.digiCatalog}) %}
+                    {% set page = 1 %}
                     <div class="product-items js-game-container" data-path="{{ path }}" data-filter="{{ path }}"
-                         data-page="0">
+                         data-page="{{ page }}">
                         {% include 'common/_all_games.html.twig' %}
                     </div>
-                    {% if games|length == 12 %}
-                        <div class="btn-center js-show-more">
-                            <a class="btn btn-blue"> <span>Посмотреть еще</span></a>
+                    {% if games|length > 0 %}
+                        <div class="pagination js-pagination" data-path="{{ path('pagination') }}">
+                            {% include 'common/_pagination.html.twig' %}
                         </div>
                     {% endif %}
-                    <div class="pagination">
-                        <div class="pagination-links"><a class="pagination-link pagination-link-prev disable" href="#">
-                                <svg width="34" height="34" viewbox="0 0 34 34" fill="none"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <g clip-path="url(#clip0_1345_730)">
-                                        <path d="M24.0711 17H9.92893" stroke="#7D87B0" stroke-width="2"
-                                              stroke-linecap="round" stroke-linejoin="round"></path>
-                                        <path d="M17 24.071L9.92893 17L17 9.92891" stroke="#7D87B0" stroke-width="2"
-                                              stroke-linecap="round" stroke-linejoin="round"></path>
-                                    </g>
-                                    <defs>
-                                        <clippath id="clip0_1345_730">
-                                            <rect width="24" height="24" fill="white"
-                                                  transform="translate(17 33.9706) rotate(-135)"></rect>
-                                        </clippath>
-                                    </defs>
-                                </svg>
-                            </a>
-                            <a class="pagination-link active" href="#">1</a>
-                            <a class="pagination-link" href="#">2</a>
-                            <a class="pagination-link" href="#">3</a>
-                            <a class="pagination-link" href="#">...</a>
-                            <a class="pagination-link pagination-link-next disable" href="#">
-                                <svg width="34" height="34" viewbox="0 0 34 34" fill="none"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <g clip-path="url(#clip0_1345_730)">
-                                        <path d="M24.0711 17H9.92893" stroke="#7D87B0" stroke-width="2"
-                                              stroke-linecap="round" stroke-linejoin="round"></path>
-                                        <path d="M17 24.071L9.92893 17L17 9.92891" stroke="#7D87B0" stroke-width="2"
-                                              stroke-linecap="round" stroke-linejoin="round"></path>
-                                    </g>
-                                    <defs>
-                                        <clippath id="clip0_1345_730">
-                                            <rect width="24" height="24" fill="white"
-                                                  transform="translate(17 33.9706) rotate(-135)"></rect>
-                                        </clippath>
-                                    </defs>
-                                </svg>
-                            </a></div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -184,6 +146,8 @@
         {{ get_ld_catalog_breadcrumb(category)|json_encode()|raw }}
 
 
+
+
     </script>
 {% endblock %}
 {# Добавить отдельный скрипт на эту страницу #}
@@ -191,4 +155,4 @@
     {{ parent() }}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/10.1.0/nouislider.min.js"></script>
 {% endblock %} #}
-{# Добавить отдельный скрипт на эту страницу       #}
+{# Добавить отдельный скрипт на эту страницу         #}

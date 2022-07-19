@@ -1,0 +1,55 @@
+<div class="pagination-links">
+    <a class="pagination-link pagination-link-prev {% if page != 1 %}js-pagintatin-page{% else %}disable{% endif %}" data-page="{{ page - 1 }}">
+        <svg width="34" height="34" viewbox="0 0 34 34" fill="none"
+             xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_1345_730)">
+                <path d="M24.0711 17H9.92893" stroke="#7D87B0" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M17 24.071L9.92893 17L17 9.92891" stroke="#7D87B0" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round"></path>
+            </g>
+            <defs>
+                <clippath id="clip0_1345_730">
+                    <rect width="24" height="24" fill="white"
+                          transform="translate(17 33.9706) rotate(-135)"></rect>
+                </clippath>
+            </defs>
+        </svg>
+    </a>
+    {% set nearbyPagesLimit = 4 %}
+    {% set pages = (count/12)|round(0, 'ceil') %}
+    {% if page != 1 and page > nearbyPagesLimit %}
+        <a class="pagination-link js-pagintatin-page" data-page="1">1</a>
+    {% endif %}
+    {% for i in 1..pages %}
+        {% if 0 == (page - nearbyPagesLimit) - loop.index %}
+            <a class="pagination-link js-pagintatin-page disable">...</a>
+        {% elseif 0 == (page + nearbyPagesLimit) - loop.index %}
+            <a class="pagination-link js-pagintatin-page disable">...</a>
+        {% elseif 0 < (page - nearbyPagesLimit) - loop.index %}
+        {% elseif 0 > (page + nearbyPagesLimit) - loop.index %}
+        {% else %}
+            <a class="pagination-link js-pagintatin-page {% if page == loop.index %}active{% endif %}" data-page="{{ loop.index }}">{{ loop.index }}</a>
+        {% endif %}
+    {% endfor %}
+    {% if page != pages and page <= (pages - nearbyPagesLimit) %}
+        <a class="pagination-link js-pagintatin-page" data-page="{{ pages }}">{{ pages }}</a>
+    {% endif %}
+    <a class="pagination-link pagination-link-next {% if page != pages %}js-pagintatin-page{% else %}disable{% endif %}" data-page="{{ page + 1 }}">
+        <svg width="34" height="34" viewbox="0 0 34 34" fill="none"
+             xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_1345_730)">
+                <path d="M24.0711 17H9.92893" stroke="#7D87B0" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M17 24.071L9.92893 17L17 9.92891" stroke="#7D87B0" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round"></path>
+            </g>
+            <defs>
+                <clippath id="clip0_1345_730">
+                    <rect width="24" height="24" fill="white"
+                          transform="translate(17 33.9706) rotate(-135)"></rect>
+                </clippath>
+            </defs>
+        </svg>
+    </a>
+</div>

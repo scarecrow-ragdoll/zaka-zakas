@@ -1254,13 +1254,35 @@ class DefaultController extends AbstractController
     public function filter(Request $request)
     {
         $criterias = $request->query->all();
-        $games = $this->entityManager->getRepository(Digiseller::class)->getByCriterias($criterias);
+        $response = null;
+        if(key_exists('ispage', $criterias)){
+            $page = key_exists('page', $criterias) ? $criterias['page'] : 1;
+            $count = $this->entityManager->getRepository(Digiseller::class)->getIds($criterias, true)['cnt'];
+            return $this->render('common/_pagination.html.twig', [
+                'page' => $page,
+                'count' => $count,
+            ], $response);
+        } else {
+            $games = $this->entityManager->getRepository(Digiseller::class)->getByCriterias($criterias);
+            $count = $this->entityManager->getRepository(Digiseller::class)->getIds($criterias, true)['cnt'];
+            return $this->render('common/_all_games.html.twig', [
+                'games' => $games,
+                'count' => $count,
+            ], $response);
+        }
+    }
+
+    /**
+     * @Route("/p", name="pagination")
+     */
+    public function pagination(Request $request)
+    {
+        $criterias = $request->query->all();
+
 
         $response = null;
 
-        return $this->render('common/_all_games.html.twig', [
-            'games' => $games,
-        ], $response);
+
     }
 
     /**

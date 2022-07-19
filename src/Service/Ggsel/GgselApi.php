@@ -41,8 +41,8 @@ class GgselApi
         '20' => 'Подписчики',
         '21' => 'Лайки',
         '22' => 'Продвижение',
-        '29' => '',
-        '30' => 'Продвижение',
+        '29' => 'Рандом ключ',
+        '30' => 'Рандом аккаунт',
     ];
 
     public function __construct(
@@ -68,6 +68,8 @@ class GgselApi
         $pageJson = $this->ggselGoods->getPage($page);
         $content = $pageJson['goods'];
         foreach ($content as $data) {
+            if($data['id_seller'] == 0 or $data['id_seller'] == '0')
+                continue;
             $this->entityManager->merge($this->getGood($data));
         }
         $this->entityManager->flush();

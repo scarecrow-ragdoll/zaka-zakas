@@ -154,7 +154,7 @@
                     </div>
                     {% set path = path('filter', {seller:seller.sellerId,limit:15}) %}
                     <div class="product-items js-game-container" data-path="{{ path }}" data-filter="{{ path }}"
-                         data-page="0">
+                         data-page="1">
                         {% include 'common/_all_games.html.twig' %}
                     </div>
                     {% if games|length == 15 %}

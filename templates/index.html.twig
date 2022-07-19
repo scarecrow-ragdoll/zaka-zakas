@@ -23,7 +23,7 @@
 
             {% set path = path('filter', {limit:15}) %}
             <div class="product-items js-game-container"  data-path="{{ path }}" data-filter="{{ path }}"
-                 data-page="0">
+                 data-page="1">
                 {% include 'common/_all_games.html.twig' with {games:topGames} %}
             </div>
             <div class="btn-center-wrap js-show-more"><a class="btn btn-show-more">

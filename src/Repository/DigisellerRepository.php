@@ -172,7 +172,7 @@ class DigisellerRepository extends ServiceEntityRepository
             $params['limit'] = $criterias['limit'];
         }
         if (key_exists('page', $criterias)) {
-            $offset = intval($criterias['page']) * $params['limit'];
+            $offset = intval($criterias['page'] - 1) * $params['limit'];
             $params['offset'] = $offset;
         }
         if (key_exists('minprice', $criterias)) {
