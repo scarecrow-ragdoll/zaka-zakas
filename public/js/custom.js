@@ -131,6 +131,13 @@ $(document).ready(function () {
 		updateCatalogFilter();
 	});
 
+	$('.js-more-comment').click(function () {
+		var path = $('.js-tab-container-resp').data('path');
+		$('.js-tab-container-resp').data('page', $('.js-tab-container-resp').data('page') + 1);
+		var page = $('.js-tab-container-resp').data('page');
+		$('.js-tab-container-resp').append($('<div>').load(path + '?page=' + page));
+	});
+
 	function updateCatalogFilter() {
 		var separator = $('.js-game-container').data('path').indexOf('?') == -1 ? '?' : '&';
 		var criterias = getCriterias();

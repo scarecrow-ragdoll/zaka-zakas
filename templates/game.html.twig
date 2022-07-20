@@ -277,9 +277,11 @@
                     </div>
                 </div>
                 <div class="reviews-items js-tab-container-resp"
-                     data-path="{{ path('get-comments',{digiseller:game.gameId}) }}">
+                     data-path="{{ path('get-comments',{digiseller:game.gameId}) }}" data-page="1">
                 </div>
-                {# <div class="btn-center-wrap"><a class="btn btn-show-more" href="#"> <span>Показать еще</span></a></div> #}
+                 <div class="btn-center-wrap">
+                     <a class="btn btn-show-more js-more-comment"> <span>Показать еще</span></a>
+                 </div>
             </div>
         </div>
     </div>

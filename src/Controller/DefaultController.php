@@ -1323,22 +1323,17 @@ class DefaultController extends AbstractController
      * @Route("/get-comments/{digiseller}", name="get-comments")
      * @ParamConverter("digiseller", options={"mapping": {"digiseller": "gameId"}})
      */
-    public function getComments(Digiseller $digiseller)
+    public function getComments(Request $request, Digiseller $digiseller)
     {
-        $comments = $this->digisellerApi->GetComments($digiseller->getSeller(), $digiseller->getGameId());
-        $reviews = [];
-        $limit = 20;
-        $i = 0;
-        foreach ($comments->reviews->review as $resp) if ($resp->type == 'good') {
+        $page = $request->query->get('page', 1);
+        $comments = $this->digisellerApi->GetComments($digiseller->getSeller(), $digiseller->getGameId(), $page);
+        foreach ($comments['review'] as $resp) {
             $reviews[] = [
-                'type' => $resp->type,
-                'date' => $resp->date,
-                'info' => $resp->info,
-                'comment' => $resp->comment,
+                'type' => $resp['type'],
+                'date' => $resp['date'],
+                'info' => $resp['info'],
+                'comment' => $resp['comment'],
             ];
-            $i++;
-            if ($i >= $limit)
-                break;
         }
         return $this->render('common/_game_reviews.html.twig', [
             'digiseller' => $digiseller,
