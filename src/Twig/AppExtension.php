@@ -51,6 +51,7 @@ class AppExtension extends AbstractExtension
         return [
             new TwigFilter('goodSection', [$this, 'goodSection']),
             new TwigFilter('noFlow', [$this, 'noFlow']),
+            new TwigFilter('productDeclination', [$this, 'productDeclination']),
         ];
     }
 
@@ -215,6 +216,17 @@ class AppExtension extends AbstractExtension
         if ($parent)
             return $category->getBreadcrumbsTitle() . ' ' . $parent->getBreadcrumbsTitle();
         return $category->getBreadcrumbsTitle();
+    }
+
+    public function productDeclination(int $count)
+    {
+        if($count == 1) {
+            return 'Товар';
+        }
+        if($count == 2 or $count == 3 or $count == 4) {
+            return 'Товара';
+        }
+        return 'Товаров';
     }
 
     public function noFlow(string $desc)
