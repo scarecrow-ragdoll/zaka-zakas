@@ -61,7 +61,7 @@ class SeoExtension extends AbstractExtension
 
     public function getMinPriceSeller($seller)
     {
-        return number_format($this->entityManager->getRepository(Digiseller::class)->getMinPriceSeller($seller), 2);
+        return floor($this->entityManager->getRepository(Digiseller::class)->getMinPriceSeller($seller));
     }
 
     public function getSeoDiscountCategory(GgselCategory $category)

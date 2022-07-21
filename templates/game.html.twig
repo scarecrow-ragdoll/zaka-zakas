@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block title %}{{ get_game_title(game) }}{% endblock %}
-{% block description %}Купить {{ game.title }} на сайте магазина ключей и аккаунтов Zaka-zaka com по цене от {{ game.wmr }} руб! Моментальное получение и гарантия честной покупки!'{% endblock %}
+{% block description %}Купить {{ game.title }} на сайте магазина ключей и аккаунтов Zaka-zaka com по цене от {{ game.wmr|round(0, 'floor') }} руб! Моментальное получение и гарантия честной покупки!'{% endblock %}
 {% block stylesheets %}
     {{ parent() }}
     {# <link rel="stylesheet" href="/css/slick.min.css"> #}

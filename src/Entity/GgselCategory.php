@@ -160,7 +160,10 @@ class GgselCategory
 
     public function getTitleSeo(): ?string
     {
-        return str_replace('Купить ', '', $this->title);
+        $title = str_replace('Купить ', '', $this->title);
+        $title = str_replace('ключ', 'ключи', $title);
+        $title = str_replace('аккаунт', 'аккаунты', $title);
+        return $title;
     }
 
     public function setTitle(?string $title): self
