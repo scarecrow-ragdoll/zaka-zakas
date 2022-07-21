@@ -125,7 +125,7 @@ class CatalogController extends AbstractController
     }
 
     /**
-     * @Route("/seller/{seller}", name="seller")
+     * @Route("/seller/{seller}-zaka-zaka", name="seller")
      * @ParamConverter("seller", options={"mapping": {"seller": "sellerId"}})
      */
     public function seller(Seller $seller)
