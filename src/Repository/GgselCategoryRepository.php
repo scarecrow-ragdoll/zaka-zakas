@@ -127,6 +127,21 @@ class GgselCategoryRepository extends ServiceEntityRepository
         return $result[0];
     }
 
+    public function getNotEmptyCategories()
+    {
+        return $this->executeSqlIds("SELECT digi_catalog FROM ggsel_category WHERE cnt_goods != 0", [], 'digi_catalog');
+    }
+
+    public function updateCount($digiCatlog, $cnt)
+    {
+        $this->executeSqlNoFetch("UPDATE ggsel_category SET cnt_goods = '$cnt' WHERE digi_catalog = '$digiCatlog'");
+    }
+
+    public function deleteEmptyCategory()
+    {
+        $this->executeSqlNoFetch("DELETE ggsel_category WHERE cnt_goods = 0");
+    }
+
     public function deleteDimkey($category)
     {
         $categoryId = $category['category'];

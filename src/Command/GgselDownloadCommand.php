@@ -100,6 +100,18 @@ class GgselDownloadCommand extends Command
             $io->success('Game clean games');
         }
 
+        if($scope == 'cnt') {
+            $categories = $this->ggselApi->cntGoodCategories();
+            $cntBar = new ProgressBar($output, count($categories));
+            $cntBar->start();
+            foreach ($categories as $category) {
+                $this->ggselApi->updateCategoryCnt($category);
+                $cntBar->advance();
+            }
+            $cntBar->finish();
+            $this->ggselApi->deleteEmptyCategory();
+        }
+
         if($scope == 'page') {
             echo $this->ggselApi->getMaxPageGame();
         }

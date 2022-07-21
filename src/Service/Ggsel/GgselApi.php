@@ -80,6 +80,23 @@ class GgselApi
         return $this->entityManager->getRepository(\App\Entity\GgselCategory::class)->getCategoryForDelete();
     }
 
+    public function cntGoodCategories()
+    {
+        return $this->entityManager->getRepository(\App\Entity\GgselCategory::class)->getNotEmptyCategories();
+    }
+
+    public function updateCategoryCnt($category)
+    {
+        $cnt = $this->entityManager->getRepository(Digiseller::class)->getIds(['category' => $category], true)['cnt'];
+        $this->entityManager->getRepository(\App\Entity\GgselCategory::class)->updateCount($category, $cnt);
+    }
+
+    public function deleteEmptyCategory()
+    {
+        return $this->entityManager->getRepository(\App\Entity\GgselCategory::class)->deleteEmptyCategory();
+    }
+
+
     public function deleteDimikey($category)
     {
         $this->entityManager->getRepository(\App\Entity\GgselCategory::class)->deleteDimkey($category);
@@ -87,7 +104,7 @@ class GgselApi
 
     public function clearDuplicates()
     {
-        $this->entityManager->getRepository(\App\Entity\Digiseller::class)->deleteDuplicates();
+        $this->entityManager->getRepository(Digiseller::class)->deleteDuplicates();
     }
 
     public function clean()

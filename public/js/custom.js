@@ -43,6 +43,10 @@ $(document).ready(function () {
         minInput(this);
     });
 
+    $('.sort-links a').click(function () {
+
+    });
+
     $(".js-inpit-min").keyup(function () {
         if (event.keyCode == 13) {
             minInput(this);
