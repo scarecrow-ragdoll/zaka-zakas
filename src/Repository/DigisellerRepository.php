@@ -141,11 +141,11 @@ class DigisellerRepository extends ServiceEntityRepository
         $categoryIds = $this->executeSqlIds('SELECT child_id from child_id where category_id = :category', ['category' => $digiCatalog], 'child_id');
         $categoryIds = array_merge($categoryIds, [$digiCatalog]);
         $where[] = "category IN ( '" . implode('\',\'', $categoryIds) . "')";
+        $where = implode(' AND ', $where);
         $sql = "SELECT COUNT(d.id) as cnt 
                 FROM digiseller d
-                LEFT JOIN seller_priority sp ON sp.seller = d.seller
                 WHERE $where";
-        $this->executeSql($sql, [])[0]['cnt'];
+        return $this->executeSql($sql, [])[0]['cnt'];
     }
 
     public function getIds(array $criterias, bool $isCount = false): array
