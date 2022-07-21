@@ -156,9 +156,6 @@ $(document).ready(function () {
             });
         else
             $('.js-game-container').load(path);
-        if ($('.js-section').length) {
-            $('.js-section-input').prop('checked', 'checked')
-        }
 
         if ($('.js-pagination').length) {
             criterias += '&ispage=true';
@@ -194,6 +191,9 @@ $(document).ready(function () {
     $('.js-clean-filter').click(function () {
         $(".js-inpit-min").val($(".js-inpit-min").data('default'));
         $(".js-inpit-max").val($(".js-inpit-max").data('default'));
+        if ($('.js-section').length) {
+            $('.js-section-input').prop('checked', 'checked')
+        }
         keypressSlider.noUiSlider.set([$(".js-inpit-min").data('default'), $(".js-inpit-max").data('default')]);
         updateCatalogFilter();
     });
