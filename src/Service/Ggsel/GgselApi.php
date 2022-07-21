@@ -87,7 +87,7 @@ class GgselApi
 
     public function updateCategoryCnt($category)
     {
-        $cnt = $this->entityManager->getRepository(Digiseller::class)->getIds(['category' => $category], true)['cnt'];
+        $cnt = $this->entityManager->getRepository(Digiseller::class)->getCount($category);
         $this->entityManager->getRepository(\App\Entity\GgselCategory::class)->updateCount($category, $cnt);
     }
 

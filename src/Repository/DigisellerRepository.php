@@ -135,8 +135,20 @@ class DigisellerRepository extends ServiceEntityRepository
         });
     }
 
-    public
-    function getIds(array $criterias, bool $isCount = false): array
+    public function getCount($digiCatalog)
+    {
+        $where = [];
+        $categoryIds = $this->executeSqlIds('SELECT child_id from child_id where category_id = :category', ['category' => $digiCatalog], 'child_id');
+        $categoryIds = array_merge($categoryIds, [$digiCatalog]);
+        $where[] = "category IN ( '" . implode('\',\'', $categoryIds) . "')";
+        $sql = "SELECT COUNT(d.id) as cnt 
+                FROM digiseller d
+                LEFT JOIN seller_priority sp ON sp.seller = d.seller
+                WHERE $where";
+        $this->executeSql($sql, [])[0]['cnt'];
+    }
+
+    public function getIds(array $criterias, bool $isCount = false): array
     {
         $where = ['wmr is not null and wmr <> 0 and available > 0 and sales > 0'];
         $params = [
@@ -215,7 +227,7 @@ class DigisellerRepository extends ServiceEntityRepository
             } else {
                 $order = "$order $orderAsc";
             }
-        } elseif($order == 'seller'){
+        } elseif ($order == 'seller') {
             $order = 'sp.priority DESC';
         } else {
             $order = "$order $orderAsc, sp.priority DESC";
@@ -229,7 +241,7 @@ class DigisellerRepository extends ServiceEntityRepository
                 LEFT JOIN seller_priority sp ON sp.seller = d.seller
                 WHERE $where";
             $result = $this->executeSql($sql, $params)[0];
-            if($result['cnt'] == 0) {
+            if ($result['cnt'] == 0) {
                 $where = str_replace('and sales > 0', '', $where);
                 $sql = "SELECT COUNT(d.id) as cnt 
                 FROM digiseller d

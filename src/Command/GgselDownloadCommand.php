@@ -109,7 +109,7 @@ class GgselDownloadCommand extends Command
                 $cntBar->advance();
             }
             $cntBar->finish();
-            $this->ggselApi->deleteEmptyCategory();
+//            $this->ggselApi->deleteEmptyCategory();
         }
 
         if($scope == 'page') {
