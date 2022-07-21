@@ -122,10 +122,6 @@ $(document).ready(function () {
         updateCatalogFilter(true);
     });
 
-    $('.js-section').change(function () {
-        updateCatalogFilter()
-    });
-
     $(document).on('click', '.js-pagintatin-page', function () {
         $('.js-game-container').data('page', $(this).data('page'));
         updateCatalogFilter();
@@ -194,7 +190,7 @@ $(document).ready(function () {
         if ($('.js-section').length) {
             $('.js-section-input').prop('checked', 'checked')
         }
-        keypressSlider.noUiSlider.set([$(".js-inpit-min").data('default'), $(".js-inpit-max").data('default')]);
+        // keypressSlider.noUiSlider.set([$(".js-inpit-min").data('default'), $(".js-inpit-max").data('default')]);
         updateCatalogFilter();
     });
 
