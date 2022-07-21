@@ -221,12 +221,12 @@ class AppExtension extends AbstractExtension
     public function productDeclination(int $count)
     {
         if($count == 1) {
-            return 'Товар';
+            return 'товар';
         }
         if($count == 2 or $count == 3 or $count == 4) {
-            return 'Товара';
+            return 'товара';
         }
-        return 'Товаров';
+        return 'товаров';
     }
 
     public function noFlow(string $desc)
