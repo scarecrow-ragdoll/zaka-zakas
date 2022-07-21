@@ -156,6 +156,10 @@ $(document).ready(function () {
             });
         else
             $('.js-game-container').load(path);
+        if ($('.js-section').length) {
+            $('.js-section-input').prop('checked', 'checked')
+        }
+
         if ($('.js-pagination').length) {
             criterias += '&ispage=true';
             var path = $('.js-game-container').data('path') + separator + criterias;
