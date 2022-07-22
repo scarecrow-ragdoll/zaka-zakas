@@ -2838,6 +2838,18 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
   transition: all .5s
 }
 
+.btn-disable {
+  background: #1A192A;
+  border-radius: 16px;
+  color: #7D87B0;
+  box-shadow: none;
+  pointer-events: none;
+}
+
+.btn-disable svg path {
+  fill: #7D87B0;
+}
+
 @font-face {
   font-family: 'TT Norms';
   src: url(../fonts/TTNorms-Bold.eot);
@@ -5620,9 +5632,9 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
   }
 }
 
-.page-category .letters-cat-block__links-item:nth-child(3n) {
+/* .page-category .letters-cat-block__links-item:nth-child(3n) {
   margin-right: 0
-}
+} */
 
 @media (max-width: 992px) {
   .page-category .letters-cat-block__links-item:nth-child(3n) {
@@ -6151,6 +6163,10 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
     font-size: 13px;
     line-height: 15px
   }
+}
+
+.page-product .reviews-wrap {
+  margin-top: 140px;
 }
 
 .product-header-content {
