@@ -120,7 +120,7 @@ class GgselApi
         foreach ($content as $data) {
                 $dataJson = json_encode($data);
                 $category = $this->serializer->deserialize($dataJson, \App\Entity\GgselCategory::class, 'json', [AbstractNormalizer::IGNORED_ATTRIBUTES => ['tags']]);
-                $category->setUrl($category->getUrl());
+                $category->setUrl($category->getUrl() . '-zaka-zaka');
             if (!empty($data['tags'])) {
                 $tags = [];
                 foreach ($data['tags'] as $tag) {

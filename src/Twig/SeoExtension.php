@@ -47,7 +47,7 @@ class SeoExtension extends AbstractExtension
 
     public function getSlug(string $title): string
     {
-        return AppUtil::urlize($title);
+        return AppUtil::urlize($title) . '-zaka-zaka';
     }
 
     public function getSeoDiscount($length, ?string $discount)

@@ -1273,19 +1273,6 @@ class DefaultController extends AbstractController
     }
 
     /**
-     * @Route("/p", name="pagination")
-     */
-    public function pagination(Request $request)
-    {
-        $criterias = $request->query->all();
-
-
-        $response = null;
-
-
-    }
-
-    /**
      * @Route("/search", name="search_page")
      */
     public function searchPage(Request $request)
@@ -1357,7 +1344,7 @@ class DefaultController extends AbstractController
         }
         $digiseller = $digi;
 
-        $trueSlug = AppUtil::urlize($digiseller->getTitle());
+        $trueSlug = AppUtil::urlize($digiseller->getTitle()) . '-zaka-zaka';
         if ($slug != $trueSlug)
             return $this->redirectToRoute('game', ['digiseller' => $digiseller->getGameId(), 'slug' => $trueSlug]);
 
