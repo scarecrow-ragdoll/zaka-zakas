@@ -1329,9 +1329,9 @@ class DefaultController extends AbstractController
     }
 
     /**
-     * @Route("/product/{digiseller}-{slug}", name="game")
+     * @Route("/product/{digiseller}", name="game")
      */
-    public function game(string $digiseller, string $slug)
+    public function game(string $digiseller)
     {
         $digi = $this->entityManager->getRepository(Digiseller::class)->findOneBy(['gameId' => $digiseller]);
 
@@ -1343,10 +1343,6 @@ class DefaultController extends AbstractController
             }
         }
         $digiseller = $digi;
-
-        $trueSlug = AppUtil::urlize($digiseller->getTitle()) . '-zaka-zaka';
-        if ($slug != $trueSlug)
-            return $this->redirectToRoute('game', ['digiseller' => $digiseller->getGameId(), 'slug' => $trueSlug]);
 
         $category = $this->entityManager->getRepository(GgselCategory::class)->findOneBy(['digiCatalog' => $digiseller->getCategory()]);
         $related = $this->entityManager->getRepository(Digiseller::class)->getRelated($digiseller);

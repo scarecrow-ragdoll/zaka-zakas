@@ -1,5 +1,5 @@
 <a class="product-item {% if sellers[game.seller] is defined %}{% if sellers[game.seller].priority == 100 %}product-item-blue{% else %}product-item-pink{% endif %}{% endif %}"
-   href="{{ path('game', {digiseller:game.gameId,slug:get_slug(game.title)}) }}">
+   href="{{ path('game', {digiseller:game.gameId}) }}">
     {% set category = category is defined ? category : null %}
     {% set discount = get_discount(game, category, curr) %}
     <div class="product-item-img">
