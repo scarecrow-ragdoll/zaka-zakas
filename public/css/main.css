@@ -4839,6 +4839,10 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
   z-index: 7
 }
 
+.btn-blue {
+  cursor: pointer;
+}
+
 @media (min-width: 1920px) {
   .block-earn:before {
     height: 215px

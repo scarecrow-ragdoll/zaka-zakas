@@ -82,7 +82,7 @@
                                         {% endif %}
                                         <div class="new">{{ game.price(curr) }} {{ get_curr_symbol(curr) }}</div>
                                     </div>
-                                    <a class="btn btn-gradient" onclick="document.getElementById('buy_form').submit();">
+                                    <a class="btn btn-gradient {% if game.available == 0 %}btn-disable{% else %}btn-blue{% endif %}" data-available="{{ game.available }}" onclick="document.getElementById('buy_form').submit();">
                                         <svg width="24" height="25" viewbox="0 0 24 25" fill="none"
                                              xmlns="http://www.w3.org/2000/svg">
                                             <path d="M21.822 7.931C21.635 7.661 21.328 7.5 21 7.5H7.333L6.179 4.73C5.867 3.982 5.143 3.5 4.333 3.5H2V5.5H4.333L9.077 16.885C9.232 17.257 9.596 17.5 10 17.5H18C18.417 17.5 18.79 17.241 18.937 16.852L21.937 8.852C22.052 8.544 22.009 8.2 21.822 7.931ZM17.307 15.5H10.667L8.167 9.5H19.557L17.307 15.5Z"
@@ -200,7 +200,7 @@
                         {% endif %}
                         <div class="new">{{ game.price(curr) }} {{ get_curr_symbol(curr) }}</div>
                     </div>
-                    <a class="btn btn-gradient" onclick="buyForm()">
+                    <a class="btn btn-gradient {% if game.available == 0 %}btn-disable{% else %}btn-blue{% endif %}" data-available="{{ game.available }}" onclick="buyForm()">
                         <svg width="24" height="25" viewbox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M21.822 7.931C21.635 7.661 21.328 7.5 21 7.5H7.333L6.179 4.73C5.867 3.982 5.143 3.5 4.333 3.5H2V5.5H4.333L9.077 16.885C9.232 17.257 9.596 17.5 10 17.5H18C18.417 17.5 18.79 17.241 18.937 16.852L21.937 8.852C22.052 8.544 22.009 8.2 21.822 7.931ZM17.307 15.5H10.667L8.167 9.5H19.557L17.307 15.5Z"
                                   fill="#fff"></path>

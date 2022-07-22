@@ -200,19 +200,18 @@ $(document).ready(function () {
 
 		function checkConfirm() {
 
-			var inputCheck = $('.form-input[type="checkbox"]');
-			if (inputCheck.is(':checked')) {
-				$(inputCheck).closest('.sidebar').find(".btn").removeClass('btn-disable');
-				$(inputCheck).closest('.sidebar').find(".btn").addClass('btn-blue');
-				console.log('checked');
-			} else {
-				$(inputCheck).closest('.sidebar').find(".btn").removeClass('btn-blue');
-				$(inputCheck).closest('.sidebar').find(".btn").addClass('btn-disable');
-				console.log('not-checked');
-			}
+            var inputCheck = $('.form-input[type="checkbox"]');
+		    let btn = $(inputCheck).closest('.sidebar').find(".btn");
+		    if(btn.data('available') > 0) {
+                if (inputCheck.is(':checked')) {
+                    btn.removeClass('btn-disable');
+                    btn.addClass('btn-blue');
+                } else {
+                    btn.removeClass('btn-blue');
+                    btn.addClass('btn-disable');
+                }
+            }
 		}
-	
-		checkConfirm();
 	
 		$('.form-group-checkbox').click(function () {
 			checkConfirm();
