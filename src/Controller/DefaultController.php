@@ -1329,7 +1329,7 @@ class DefaultController extends AbstractController
     }
 
     /**
-     * @Route("/product/{digiseller}", name="game")
+     * @Route("/product/{digiseller}-zaka-zaka", name="game")
      */
     public function game(string $digiseller)
     {
