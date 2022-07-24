@@ -2451,7 +2451,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
 
 @media (max-width: 767px) {
   .pagination-link {
-    display: none;
+    /* display: none; */
     font-size: 15px;
     line-height: 20px;
     height: 40px;
