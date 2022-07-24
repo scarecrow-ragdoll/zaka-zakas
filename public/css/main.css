@@ -7573,6 +7573,18 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
   }
 }
 
+@media(max-width: 1040px) {
+  .search-result .product-item {
+    width: calc(25% - 15px);
+  }
+}
+
+@media(max-width: 935px) {
+  .search-result .product-item {
+    width: calc(33.33% - 15px)
+  }
+}
+
 @media (max-width: 767px) {
   .search-result .product-item {
     margin: 0 0 16px 0;
