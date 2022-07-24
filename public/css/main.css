@@ -2337,7 +2337,7 @@ hr {
   box-shadow: none;
   border: none;
   height: 4px;
-  max-width: 242px;
+  max-width: 230px;
 }
 
 .noUi-horizontal .noUi-handle {
@@ -2372,7 +2372,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-lower {
 }
 
 html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
-  right: 0
+  right: -15px;
 }
 
 .pagination {
