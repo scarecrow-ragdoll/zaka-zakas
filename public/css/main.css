@@ -2565,6 +2565,8 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
   height: 24px
 }
 
+
+
 .select2-container {
   width: 132px !important
 }
@@ -3467,7 +3469,8 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
 
 @media (max-width: 1030px) {
   .header-menu {
-    overflow-x: auto
+    overflow-x: auto;
+    padding: 7px 0;
   }
 }
 
@@ -6171,7 +6174,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
 }
 
 .page-product .reviews-wrap {
-  margin-top: 140px;
+  margin-top: 40px;
 }
 
 .product-header-content {
@@ -6259,6 +6262,21 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
   background-size: auto 20px;
   height: 20px
 }
+
+@media(max-width: 1200px) {
+  .product-header-content .right .saller-rating .star-rating>span:before {
+    background-size: auto 25px;
+    height: 25px;
+  }
+}
+
+@media(max-width: 660px) {
+  .product-header-content .right .saller-rating .star-rating>span:before {
+    background-size: auto 20px;
+    height: 20px;
+  }
+}
+
 
 .product-header-content .right .link-seller {
   display: none
