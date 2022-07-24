@@ -3591,7 +3591,8 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
 
 .lang .lang-dropdown {
   border-radius: 0px 0px 8px 8px;
-  padding: 16px 16px 53px 16px;
+  /* padding: 16px 16px 53px 16px; */
+  padding: 0;
   width: 52px
 }
 
@@ -3682,7 +3683,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle-upper {
   font-weight: 600;
   font-size: 16px;
   line-height: 20px;
-  padding: 8px;
+  padding: 8px 22px;
   min-height: 24px
 }
 
